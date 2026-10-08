@@ -1,0 +1,74 @@
+{
+  "test_start": "2025-07-20",
+  "test_end": "2025-12-31",
+  "test_days": 165,
+  "forecast_refresh_days": 7,
+  "daily_material_rows": 4950,
+  "item_rows": 4950,
+  "order_rows": 4086,
+  "policies": [
+    {
+      "policy": "manual",
+      "requested_units": 88436,
+      "served_units": 87674,
+      "lost_units": 762,
+      "service_level": 0.9913835994391424,
+      "stockout_rate": 0.008616400560857568,
+      "item_day_stockout_rate": 0.03515151515151515,
+      "waste_cost": 44868.334285714256,
+      "purchase_cost": 2869065.0,
+      "holding_cost": 15726.362923092862,
+      "lost_sale_penalty": 111268.0,
+      "initial_stock_value": 46171.55408571428,
+      "closing_stock_value": 84630.75825000006,
+      "pending_stock_value": 49990.0,
+      "total_cost": 3042230.917008807
+    },
+    {
+      "policy": "seasonal_naive",
+      "requested_units": 88436,
+      "served_units": 85810,
+      "lost_units": 2626,
+      "service_level": 0.9703062101406666,
+      "stockout_rate": 0.029693789859333304,
+      "item_day_stockout_rate": 0.11393939393939394,
+      "waste_cost": 5539.002285714268,
+      "purchase_cost": 2743660.0,
+      "holding_cost": 12609.570404521433,
+      "lost_sale_penalty": 403674.0,
+      "initial_stock_value": 46171.55408571428,
+      "closing_stock_value": 63012.97025000005,
+      "pending_stock_value": 49450.0,
+      "total_cost": 3206115.124490236
+    },
+    {
+      "policy": "ml",
+      "requested_units": 88436,
+      "served_units": 87053,
+      "lost_units": 1383,
+      "service_level": 0.9843615722104121,
+      "stockout_rate": 0.01563842778958795,
+      "item_day_stockout_rate": 0.07757575757575758,
+      "waste_cost": 1731.4508571428523,
+      "purchase_cost": 2770800.0,
+      "holding_cost": 11675.490536521433,
+      "lost_sale_penalty": 207348.0,
+      "initial_stock_value": 46171.55408571428,
+      "closing_stock_value": 57644.24167857147,
+      "pending_stock_value": 44910.0,
+      "total_cost": 3035995.044622236
+    }
+  ],
+  "relative_reduction_vs_manual": {
+    "seasonal_naive": {
+      "waste_cost": 0.8765498569560706,
+      "stockout_rate": -2.446194225721785,
+      "total_cost": -0.053869746232992656
+    },
+    "ml": {
+      "waste_cost": 0.9614104048053744,
+      "stockout_rate": -0.81496062992126,
+      "total_cost": 0.0020497695791949536
+    }
+  }
+}

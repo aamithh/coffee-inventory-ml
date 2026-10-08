@@ -1,0 +1,13 @@
+{
+  "origin": "2025-07-20",
+  "forecast_days": 11,
+  "item_forecast_rows": 110,
+  "material_forecast_rows": 110,
+  "materials": 10,
+  "orders_now": 10,
+  "estimated_order_cost": 88365.0,
+  "currency": "INR",
+  "illustrative_snapshot": true,
+  "materials_with_pre_arrival_shortfall": 4,
+  "materials_with_unmet_order_quantity": 4
+}

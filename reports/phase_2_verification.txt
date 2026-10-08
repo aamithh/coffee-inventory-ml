@@ -1,0 +1,205 @@
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pytest -q
+........................................................................ [ 74%]
+.........................                                                [100%]
+============================== warnings summary ===============================
+tests/test_environment.py::test_required_library_import[lightgbm]
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+tests/test_environment.py::test_required_library_import[shap]
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+97 passed, 14 warnings in 17.61s
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff check src tests
+All checks passed!
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff format --check src tests
+41 files already formatted
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pip check
+No broken requirements found.
+exit_code=0
+$ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\tasks.ps1 -Task features
+{
+  "rows": 10960,
+  "predictors": 40,
+  "split_counts": {
+    "test": {
+      "rows": 1650,
+      "eligible_targets": 1593
+    },
+    "train": {
+      "rows": 7670,
+      "eligible_targets": 7326
+    },
+    "val": {
+      "rows": 1640,
+      "eligible_targets": 1562
+    }
+  },
+  "eda": {
+    "split": "train",
+    "rows": 7670,
+    "clean_rows": 7326,
+    "start_date": "2023-01-01",
+    "end_date": "2025-02-05",
+    "weekly_clean_mean": {
+      "0": 38.09942638623327,
+      "1": 39.64957264957265,
+      "2": 39.70037807183365,
+      "3": 40.04381694255112,
+      "4": 42.727878211227406,
+      "5": 47.975190839694655,
+      "6": 47.93480345158198
+    },
+    "festival_groups": {
+      "before festival": {
+        "mean": 50.964285714285715,
+        "count": 196
+      },
+      "festival day": {
+        "mean": 36.885714285714286,
+        "count": 105
+      },
+      "ordinary": {
+        "mean": 42.1423487544484,
+        "count": 7025
+      }
+    },
+    "stockout_fraction_by_item": {
+      "cold_coffee": 0.018252933507170794,
+      "latte": 0.018252933507170794,
+      "cappuccino": 0.02216427640156454,
+      "espresso": 0.02346805736636245,
+      "iced_latte": 0.02346805736636245,
+      "masala_chai": 0.02346805736636245,
+      "croissant": 0.024771838331160364,
+      "americano": 0.024771838331160364,
+      "hot_chocolate": 0.024771838331160364,
+      "sandwich": 0.028683181225554105
+    },
+    "figures": {
+      "weekly": "eda_weekly.png",
+      "festival": "eda_festival.png",
+      "weather": "eda_weather.png",
+      "trend": "eda_trend.png",
+      "stockouts": "eda_stockouts.png"
+    },
+    "limitations": "Synthetic sales; historical realized weather; group differences are confounded. EDA uses train dates by default."
+  }
+}
+exit_code=0
+Notebook execution: 4 code cells, 5 embedded PNG plots; schema validated
+Python: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe
+{
+  "rows": 10960,
+  "predictors": 40,
+  "split_counts": {
+    "test": {
+      "rows": 1650,
+      "eligible_targets": 1593
+    },
+    "train": {
+      "rows": 7670,
+      "eligible_targets": 7326
+    },
+    "val": {
+      "rows": 1640,
+      "eligible_targets": 1562
+    }
+  },
+  "eda": {
+    "split": "train",
+    "rows": 7670,
+    "clean_rows": 7326,
+    "start_date": "2023-01-01",
+    "end_date": "2025-02-05",
+    "weekly_clean_mean": {
+      "0": 38.09942638623327,
+      "1": 39.64957264957265,
+      "2": 39.70037807183365,
+      "3": 40.04381694255112,
+      "4": 42.727878211227406,
+      "5": 47.975190839694655,
+      "6": 47.93480345158198
+    },
+    "festival_groups": {
+      "before festival": {
+        "mean": 50.964285714285715,
+        "count": 196
+      },
+      "festival day": {
+        "mean": 36.885714285714286,
+        "count": 105
+      },
+      "ordinary": {
+        "mean": 42.1423487544484,
+        "count": 7025
+      }
+    },
+    "stockout_fraction_by_item": {
+      "cold_coffee": 0.018252933507170794,
+      "latte": 0.018252933507170794,
+      "cappuccino": 0.02216427640156454,
+      "espresso": 0.02346805736636245,
+      "iced_latte": 0.02346805736636245,
+      "masala_chai": 0.02346805736636245,
+      "croissant": 0.024771838331160364,
+      "americano": 0.024771838331160364,
+      "hot_chocolate": 0.024771838331160364,
+      "sandwich": 0.028683181225554105
+    },
+    "figures": {
+      "weekly": "eda_weekly.png",
+      "festival": "eda_festival.png",
+      "weather": "eda_weather.png",
+      "trend": "eda_trend.png",
+      "stockouts": "eda_stockouts.png"
+    },
+    "limitations": "Synthetic sales; historical realized weather; group differences are confounded. EDA uses train dates by default."
+  }
+}
+weekly
+festival
+weather
+trend
+stockouts
+Predictors: 40
+['item', 'category', 'price', 'promo_flag', 'day_of_week', 'weekend_flag', 'day_of_month', 'week_of_year', 'month', 'month_end_flag', 'holiday_flag', 'festival_flag', 'days_to_next_festival', 'days_since_last_festival', 'payday_flag', 'long_weekend_flag', 'day_of_week_sin', 'day_of_week_cos', 'month_sin', 'month_cos', 'day_of_month_sin', 'day_of_month_cos', 'week_of_year_sin', 'week_of_year_cos', 'temp_max', 'temp_min', 'rainfall', 'rain_flag', 'temp_bucket', 'sales_lag_1', 'sales_lag_7', 'sales_lag_14', 'sales_lag_28', 'sales_rolling_mean_7', 'sales_rolling_std_7', 'sales_rolling_mean_28', 'sales_rolling_std_28', 'history_days', 'cold_start_flag', 'category_past_mean']
+Eligible targets by split:
+split
+test     1593
+train    7326
+val      1562
+Name: target_eligible, dtype: int64
+Current/future observation mutation: predictors through 2025-07-20 unchanged — PASS
+Protected feature/model source scan: PASS
+Source artifacts unchanged (SHA-256):
+sales_csv: f0cfccbacc248a03ca2594f8e07d5357fe23e29302b20667ce38639397bf82d1; unchanged=True
+truth_csv: 747553c6fcf8c0a3fc1a512b1d089c00ee5b99ced7b3597e8a536b0a2c218a87; unchanged=True
+weather_cache: 8de5227a7cff4939e554a3257572ebe1e92a51cc02f76c632a03717bf0a441f2; unchanged=True
+database: 12cf4d174c631000756f3ecdd3d4d7d782fc8e3ad003a5282daaf806e20ef078; unchanged=True
+truth_database: a4e210e059cb4413c75494aa41d4278af12d27fa1d484ff1f04e0635208381c1; unchanged=True
+Feature export: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\data\processed\features.csv; predictors=40
+No models trained. Phase 2 complete; stop before Phase 3.

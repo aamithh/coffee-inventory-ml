@@ -1,0 +1,789 @@
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pytest -q
+........................................................................ [ 33%]
+........................................................................ [ 66%]
+........................................................................ [ 99%]
+.                                                                        [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\starlette\testclient.py:37
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\starlette\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+.venv\Lib\site-packages\matplotlib\_mathtext.py:45
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+217 passed, 15 warnings in 181.63s (0:03:01)
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff check src tests
+All checks passed!
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff format --check src tests
+62 files already formatted
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pip check
+No broken requirements found.
+exit_code=0
+Isolated workflow: full configured history/grid; empty sales/model/replay outputs
+$ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\tasks.ps1 -Task setup-check --config C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\data\processed\.pipeline_staging\final_workflow_k8l_qtj5\config.yaml
+No broken requirements found.
+Python: 3.11.9
+Executable: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe
+Virtual environment: True
+Required library imports: 17 OK
+{
+  "train_start": "2023-01-01",
+  "train_end": "2025-02-05",
+  "val_start": "2025-02-06",
+  "val_end": "2025-07-19",
+  "test_start": "2025-07-20",
+  "test_end": "2025-12-31",
+  "as_of_date": "2025-07-20",
+  "forecast_horizon_days": 7,
+  "calendar_required_through": "2025-07-27",
+  "drift_start": "2025-02-06",
+  "drift_plateau_date": "2025-08-05",
+  "drift_start_split": "val",
+  "drift_ramp_overlap_days": {
+    "train": 0,
+    "val": 164,
+    "test": 16
+  },
+  "drift_appears_in_test": true,
+  "test_contains_shifted_demand": true,
+  "split_rule": "floor(train*n), floor(validation*n), remainder to test; never shuffle"
+}
+exit_code=0
+$ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\tasks.ps1 -Task data --config C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\data\processed\.pipeline_staging\final_workflow_k8l_qtj5\config.yaml
+Pipeline start; requested weather provider: auto
+OneDrive warning: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml. Use a non-synced location such as C:/dev/coffee-inventory-ml, exclude data/processed from sync, or set COFFEE_DB_DIR. SQLite uses DELETE journaling.
+Weather source (start): open_meteo
+Weather source (end): open_meteo; pipeline succeeded
+{
+  "rows": 10960,
+  "days": 1096,
+  "items": 10,
+  "start_date": "2023-01-01",
+  "end_date": "2025-12-31",
+  "weather_source": [
+    "open_meteo"
+  ],
+  "observed_units_including_pos_outliers": 484112,
+  "latent_units": 484775,
+  "missing_rows": 56,
+  "outlier_rows": 67,
+  "stockout_rows": 266,
+  "closure_days": 9,
+  "promotion_days": 511,
+  "promotion_day_fraction": 0.46624087591240876,
+  "festival_days": 15,
+  "clean_weekday_mean": 42.30460921843687,
+  "clean_weekend_mean": 50.6588785046729,
+  "clean_weekend_weekday_ratio": 1.197478937651908,
+  "per_item": [
+    {
+      "item": "americano",
+      "observed_units": 39398,
+      "promo_days": 74,
+      "mean_daily_sales": 36.21139705882353,
+      "missing_rows": 8,
+      "stockout_rows": 28,
+      "clean_weekend_weekday_ratio": 1.1264682552233236
+    },
+    {
+      "item": "cappuccino",
+      "observed_units": 60688,
+      "promo_days": 69,
+      "mean_daily_sales": 55.67706422018349,
+      "missing_rows": 6,
+      "stockout_rows": 24,
+      "clean_weekend_weekday_ratio": 1.1571453571694508
+    },
+    {
+      "item": "cold_coffee",
+      "observed_units": 56560,
+      "promo_days": 77,
+      "mean_daily_sales": 51.70018281535649,
+      "missing_rows": 2,
+      "stockout_rows": 20,
+      "clean_weekend_weekday_ratio": 1.3188158517311015
+    },
+    {
+      "item": "croissant",
+      "observed_units": 35408,
+      "promo_days": 59,
+      "mean_daily_sales": 32.51423324150597,
+      "missing_rows": 7,
+      "stockout_rows": 28,
+      "clean_weekend_weekday_ratio": 1.307461352657005
+    },
+    {
+      "item": "espresso",
+      "observed_units": 56862,
+      "promo_days": 66,
+      "mean_daily_sales": 52.31094756209752,
+      "missing_rows": 9,
+      "stockout_rows": 27,
+      "clean_weekend_weekday_ratio": 1.1505844161615086
+    },
+    {
+      "item": "hot_chocolate",
+      "observed_units": 29307,
+      "promo_days": 84,
+      "mean_daily_sales": 26.788848263254113,
+      "missing_rows": 2,
+      "stockout_rows": 32,
+      "clean_weekend_weekday_ratio": 1.1739135548449495
+    },
+    {
+      "item": "iced_latte",
+      "observed_units": 42621,
+      "promo_days": 69,
+      "mean_daily_sales": 39.065994500458295,
+      "missing_rows": 5,
+      "stockout_rows": 31,
+      "clean_weekend_weekday_ratio": 1.3290241920077412
+    },
+    {
+      "item": "latte",
+      "observed_units": 67302,
+      "promo_days": 61,
+      "mean_daily_sales": 61.63186813186813,
+      "missing_rows": 4,
+      "stockout_rows": 20,
+      "clean_weekend_weekday_ratio": 1.157015586444655
+    },
+    {
+      "item": "masala_chai",
+      "observed_units": 57639,
+      "promo_days": 56,
+      "mean_daily_sales": 52.97702205882353,
+      "missing_rows": 8,
+      "stockout_rows": 25,
+      "clean_weekend_weekday_ratio": 1.1694708717943545
+    },
+    {
+      "item": "sandwich",
+      "observed_units": 38327,
+      "promo_days": 72,
+      "mean_daily_sales": 35.13015582034831,
+      "missing_rows": 5,
+      "stockout_rows": 31,
+      "clean_weekend_weekday_ratio": 1.1397682749201115
+    }
+  ],
+  "record_status_counts": {
+    "closed": 90,
+    "missing": 56,
+    "stockout": 266,
+    "outlier": 67,
+    "clean": 10481
+  },
+  "usable_for_training_rows": 10481,
+  "date_context": {
+    "train_start": "2023-01-01",
+    "train_end": "2025-02-05",
+    "val_start": "2025-02-06",
+    "val_end": "2025-07-19",
+    "test_start": "2025-07-20",
+    "test_end": "2025-12-31",
+    "as_of_date": "2025-07-20",
+    "forecast_horizon_days": 7,
+    "calendar_required_through": "2025-07-27",
+    "drift_start": "2025-02-06",
+    "drift_plateau_date": "2025-08-05",
+    "drift_start_split": "val",
+    "drift_ramp_overlap_days": {
+      "train": 0,
+      "val": 164,
+      "test": 16
+    },
+    "drift_appears_in_test": true,
+    "test_contains_shifted_demand": true,
+    "split_rule": "floor(train*n), floor(validation*n), remainder to test; never shuffle"
+  },
+  "reconciliation": {
+    "latent_units": 484775,
+    "observed_units": 484112,
+    "gap": 663,
+    "stockout_loss": 5020,
+    "missing_loss": 2420,
+    "outlier_excess": 6777,
+    "unexplained_gap": 0
+  },
+  "weather_effects_clean": {
+    "cold_coffee": {
+      "hot_mean": 66.72881355932203,
+      "normal_mean": 44.34893617021277,
+      "hot_rows": 354,
+      "normal_rows": 705
+    },
+    "iced_latte": {
+      "hot_mean": 49.68604651162791,
+      "normal_mean": 34.19027181688126,
+      "hot_rows": 344,
+      "normal_rows": 699
+    },
+    "hot_chocolate": {
+      "rainy_mean": 31.311377245508982,
+      "dry_mean": 23.111721611721613,
+      "rainy_rows": 501,
+      "dry_rows": 546
+    },
+    "masala_chai": {
+      "rainy_mean": 62.4859437751004,
+      "dry_mean": 45.78481012658228,
+      "rainy_rows": 498,
+      "dry_rows": 553
+    }
+  },
+  "cross_item_residual_correlation": 0.08218818233882166,
+  "notes": [
+    "Observed total retains injected POS over-recording errors and omits missing sales.",
+    "Pattern means exclude closures, missing, stockout and POS outlier rows.",
+    "Latent and expected demand are isolated oracle data, unavailable to the sales loader.",
+    "Historical reanalysis weather is a proxy; it is not known day-ahead forecast weather."
+  ]
+}
+WARNING OneDrive warning: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml. Use a non-synced location such as C:/dev/coffee-inventory-ml, exclude data/processed from sync, or set COFFEE_DB_DIR. SQLite uses DELETE journaling.
+INFO Weather source (start): open_meteo
+INFO Weather source (end): open_meteo; pipeline succeeded
+exit_code=0
+$ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\tasks.ps1 -Task features --config C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\data\processed\.pipeline_staging\final_workflow_k8l_qtj5\config.yaml
+{
+  "rows": 10960,
+  "predictors": 40,
+  "split_counts": {
+    "test": {
+      "rows": 1650,
+      "eligible_targets": 1593
+    },
+    "train": {
+      "rows": 7670,
+      "eligible_targets": 7326
+    },
+    "val": {
+      "rows": 1640,
+      "eligible_targets": 1562
+    }
+  },
+  "eda": {
+    "split": "train",
+    "rows": 7670,
+    "clean_rows": 7326,
+    "start_date": "2023-01-01",
+    "end_date": "2025-02-05",
+    "weekly_clean_mean": {
+      "0": 38.09942638623327,
+      "1": 39.64957264957265,
+      "2": 39.70037807183365,
+      "3": 40.04381694255112,
+      "4": 42.727878211227406,
+      "5": 47.975190839694655,
+      "6": 47.93480345158198
+    },
+    "festival_groups": {
+      "before festival": {
+        "mean": 50.964285714285715,
+        "count": 196
+      },
+      "festival day": {
+        "mean": 36.885714285714286,
+        "count": 105
+      },
+      "ordinary": {
+        "mean": 42.1423487544484,
+        "count": 7025
+      }
+    },
+    "stockout_fraction_by_item": {
+      "cold_coffee": 0.018252933507170794,
+      "latte": 0.018252933507170794,
+      "cappuccino": 0.02216427640156454,
+      "espresso": 0.02346805736636245,
+      "iced_latte": 0.02346805736636245,
+      "masala_chai": 0.02346805736636245,
+      "croissant": 0.024771838331160364,
+      "americano": 0.024771838331160364,
+      "hot_chocolate": 0.024771838331160364,
+      "sandwich": 0.028683181225554105
+    },
+    "figures": {
+      "weekly": "eda_weekly.png",
+      "festival": "eda_festival.png",
+      "weather": "eda_weather.png",
+      "trend": "eda_trend.png",
+      "stockouts": "eda_stockouts.png"
+    },
+    "limitations": "Synthetic sales; historical realized weather; group differences are confounded. EDA uses train dates by default."
+  }
+}
+exit_code=0
+$ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\tasks.ps1 -Task train --config C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\data\processed\.pipeline_staging\final_workflow_k8l_qtj5\config.yaml
+CV candidate 1/4 complete: {'num_leaves': 15, 'learning_rate': 0.03}
+CV candidate 2/4 complete: {'num_leaves': 15, 'learning_rate': 0.05}
+CV candidate 3/4 complete: {'num_leaves': 31, 'learning_rate': 0.03}
+CV candidate 4/4 complete: {'num_leaves': 31, 'learning_rate': 0.05}
+Validation ML point selection: lightgbm; WAPE=0.207240
+Recursive test origins 4/23 complete
+Recursive test origins 8/23 complete
+Recursive test origins 12/23 complete
+Recursive test origins 16/23 complete
+Recursive test origins 20/23 complete
+{
+  "selected_point_model": "lightgbm",
+  "selection": "validation WAPE after train-only five-fold tuning",
+  "best_parameters": {
+    "num_leaves": 15,
+    "learning_rate": 0.03
+  },
+  "training_through": "2025-07-19",
+  "test_rows": 1593,
+  "one_day_test_metrics": [
+    {
+      "model": "ridge",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.20672707785944983,
+      "mae": 11.118490803367283,
+      "rmse": 14.642547139997916,
+      "bias": -0.7062035713100376,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "lightgbm",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.21492760998826535,
+      "mae": 11.559543528540244,
+      "rmse": 15.548871939553486,
+      "bias": -2.18610886597426,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "naive",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.29402912489155003,
+      "mae": 15.81389412010881,
+      "rmse": 20.890915309543782,
+      "bias": -0.1609123247541327,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.28905949087853217,
+      "mae": 15.546610169491526,
+      "rmse": 20.70440772643603,
+      "bias": -0.3166038920276208,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "moving_average",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.232384698454939,
+      "mae": 12.498445580366484,
+      "rmse": 16.406700748847424,
+      "bias": -0.29345051265955224,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "quantile_p50",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.21928874211312455,
+      "mae": 11.794100161974997,
+      "rmse": 15.966126727689879,
+      "bias": -3.2828901541078177,
+      "interval_coverage": 0.7407407407407407,
+      "mean_interval_width": 32.89390973602061
+    }
+  ],
+  "relative_wape_improvement": 0.2564589063135738,
+  "required_wape_improvement": 0.15,
+  "meets_requested_improvement": true,
+  "raw_quantile_crossings": 0,
+  "nominal_interval_coverage": 0.8,
+  "recursive_test_metrics": [
+    {
+      "model": "lightgbm",
+      "horizon_day": 1,
+      "rows": 224,
+      "wape": 0.20235057338307727,
+      "mae": 12.441850210737158,
+      "rmse": 16.986129370527646,
+      "bias": -2.8546696440153463,
+      "interval_coverage": 0.78125,
+      "mean_interval_width": 37.081062593876915
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 2,
+      "rows": 218,
+      "wape": 0.2503067043597271,
+      "mae": 11.983720520194824,
+      "rmse": 16.403029883094682,
+      "bias": -2.18195740649673,
+      "interval_coverage": 0.6743119266055045,
+      "mean_interval_width": 30.663778149564727
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 3,
+      "rows": 224,
+      "wape": 0.2166779827033463,
+      "mae": 10.911284128989937,
+      "rmse": 14.769251965092755,
+      "bias": -2.9999686459506205,
+      "interval_coverage": 0.7678571428571429,
+      "mean_interval_width": 31.255328578118192
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 4,
+      "rows": 219,
+      "wape": 0.20772302723483985,
+      "mae": 10.444958794109846,
+      "rmse": 13.80577251499552,
+      "bias": -1.2897739733675408,
+      "interval_coverage": 0.7671232876712328,
+      "mean_interval_width": 31.496523497238808
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 5,
+      "rows": 224,
+      "wape": 0.23665483224582143,
+      "mae": 11.636233581944095,
+      "rmse": 15.732397666134837,
+      "bias": -0.35339070117172705,
+      "interval_coverage": 0.7142857142857143,
+      "mean_interval_width": 30.226993969929612
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 6,
+      "rows": 222,
+      "wape": 0.19937137461378426,
+      "mae": 11.146835593271577,
+      "rmse": 14.282815274448888,
+      "bias": -3.8357436922626262,
+      "interval_coverage": 0.7432432432432432,
+      "mean_interval_width": 33.825821547893945
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 7,
+      "rows": 223,
+      "wape": 0.2029759613373367,
+      "mae": 11.849063070356273,
+      "rmse": 15.420144404118952,
+      "bias": -0.4907855323024416,
+      "interval_coverage": 0.7982062780269058,
+      "mean_interval_width": 37.67359228500186
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 1,
+      "rows": 224,
+      "wape": 0.2977346983228055,
+      "mae": 18.30669642857143,
+      "rmse": 24.848633130463757,
+      "bias": 0.12217261904761896,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 2,
+      "rows": 218,
+      "wape": 0.3046820606176743,
+      "mae": 14.587003058103976,
+      "rmse": 19.339800537012188,
+      "bias": -0.10382262996941899,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 3,
+      "rows": 224,
+      "wape": 0.2744473995271867,
+      "mae": 13.820386904761904,
+      "rmse": 17.75556376584132,
+      "bias": -0.11264880952380953,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 4,
+      "rows": 219,
+      "wape": 0.2790713161399685,
+      "mae": 14.032572298325723,
+      "rmse": 18.695449108047608,
+      "bias": 0.08310502283105012,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 5,
+      "rows": 224,
+      "wape": 0.3326009321469645,
+      "mae": 16.35386904761905,
+      "rmse": 22.13929051536678,
+      "bias": 0.9610119047619047,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 6,
+      "rows": 222,
+      "wape": 0.26433021806853585,
+      "mae": 14.778678678678679,
+      "rmse": 18.886993103946125,
+      "bias": 0.14864864864864877,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 7,
+      "rows": 223,
+      "wape": 0.2705868797050238,
+      "mae": 15.795964125560538,
+      "rmse": 20.72967335125246,
+      "bias": -0.6689088191330345,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": "overall",
+      "rows": 1554,
+      "wape": 0.2152539487155814,
+      "mae": 11.4893526577623,
+      "rmse": 15.381101323851572,
+      "bias": -2.0010978006334423,
+      "interval_coverage": 0.7496782496782497,
+      "mean_interval_width": 33.1860901013381
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": "overall",
+      "rows": 1554,
+      "wape": 0.28833457912376725,
+      "mae": 15.39009009009009,
+      "rmse": 20.480444122347333,
+      "bias": 0.06229086229086219,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    }
+  ],
+  "limitations": [
+    "Synthetic shop data; no real-shop generalization claim.",
+    "Persistence weather is less informative than future realized weather, deliberately excluded.",
+    "One-day scores use earlier observed test history; recursive scores use predictions.",
+    "Quantile intervals are empirical and uncalibrated; recursive uncertainty is conditional on a predicted history path.",
+    "Cold-start point forecasts use past category means; quantile fallback uses training-category empirical quantiles.",
+    "SHAP drivers are model associations, not causal effects."
+  ]
+}
+exit_code=0
+$ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\tasks.ps1 -Task inventory --config C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\data\processed\.pipeline_staging\final_workflow_k8l_qtj5\config.yaml
+{
+  "origin": "2025-07-20",
+  "forecast_days": 11,
+  "item_forecast_rows": 110,
+  "material_forecast_rows": 110,
+  "materials": 10,
+  "orders_now": 10,
+  "estimated_order_cost": 88365.0,
+  "currency": "INR",
+  "illustrative_snapshot": true,
+  "materials_with_pre_arrival_shortfall": 4,
+  "materials_with_unmet_order_quantity": 4
+}
+exit_code=0
+$ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\tasks.ps1 -Task simulate --config C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\data\processed\.pipeline_staging\final_workflow_k8l_qtj5\config.yaml
+Forecast refresh 1/24: 2025-07-20 (past observed history only)
+Forecast refresh 2/24: 2025-07-27 (past observed history only)
+Forecast refresh 3/24: 2025-08-03 (past observed history only)
+Forecast refresh 4/24: 2025-08-10 (past observed history only)
+Forecast refresh 5/24: 2025-08-17 (past observed history only)
+Forecast refresh 6/24: 2025-08-24 (past observed history only)
+Forecast refresh 7/24: 2025-08-31 (past observed history only)
+Forecast refresh 8/24: 2025-09-07 (past observed history only)
+Forecast refresh 9/24: 2025-09-14 (past observed history only)
+Forecast refresh 10/24: 2025-09-21 (past observed history only)
+Forecast refresh 11/24: 2025-09-28 (past observed history only)
+Forecast refresh 12/24: 2025-10-05 (past observed history only)
+Forecast refresh 13/24: 2025-10-12 (past observed history only)
+Forecast refresh 14/24: 2025-10-19 (past observed history only)
+Forecast refresh 15/24: 2025-10-26 (past observed history only)
+Forecast refresh 16/24: 2025-11-02 (past observed history only)
+Forecast refresh 17/24: 2025-11-09 (past observed history only)
+Forecast refresh 18/24: 2025-11-16 (past observed history only)
+Forecast refresh 19/24: 2025-11-23 (past observed history only)
+Forecast refresh 20/24: 2025-11-30 (past observed history only)
+Forecast refresh 21/24: 2025-12-07 (past observed history only)
+Forecast refresh 22/24: 2025-12-14 (past observed history only)
+Forecast refresh 23/24: 2025-12-21 (past observed history only)
+Forecast refresh 24/24: 2025-12-28 (past observed history only)
+{
+  "test_start": "2025-07-20",
+  "test_end": "2025-12-31",
+  "test_days": 165,
+  "forecast_refresh_days": 7,
+  "daily_material_rows": 4950,
+  "item_rows": 4950,
+  "order_rows": 4086,
+  "policies": [
+    {
+      "policy": "manual",
+      "requested_units": 88436,
+      "served_units": 87674,
+      "lost_units": 762,
+      "service_level": 0.9913835994391424,
+      "stockout_rate": 0.008616400560857568,
+      "item_day_stockout_rate": 0.03515151515151515,
+      "waste_cost": 44868.334285714256,
+      "purchase_cost": 2869065.0,
+      "holding_cost": 15726.362923092862,
+      "lost_sale_penalty": 111268.0,
+      "initial_stock_value": 46171.55408571428,
+      "closing_stock_value": 84630.75825000006,
+      "pending_stock_value": 49990.0,
+      "total_cost": 3042230.917008807
+    },
+    {
+      "policy": "seasonal_naive",
+      "requested_units": 88436,
+      "served_units": 85810,
+      "lost_units": 2626,
+      "service_level": 0.9703062101406666,
+      "stockout_rate": 0.029693789859333304,
+      "item_day_stockout_rate": 0.11393939393939394,
+      "waste_cost": 5539.002285714268,
+      "purchase_cost": 2743660.0,
+      "holding_cost": 12609.570404521433,
+      "lost_sale_penalty": 403674.0,
+      "initial_stock_value": 46171.55408571428,
+      "closing_stock_value": 63012.97025000005,
+      "pending_stock_value": 49450.0,
+      "total_cost": 3206115.124490236
+    },
+    {
+      "policy": "ml",
+      "requested_units": 88436,
+      "served_units": 87053,
+      "lost_units": 1383,
+      "service_level": 0.9843615722104121,
+      "stockout_rate": 0.01563842778958795,
+      "item_day_stockout_rate": 0.07757575757575758,
+      "waste_cost": 1731.4508571428523,
+      "purchase_cost": 2770800.0,
+      "holding_cost": 11675.490536521433,
+      "lost_sale_penalty": 207348.0,
+      "initial_stock_value": 46171.55408571428,
+      "closing_stock_value": 57644.24167857147,
+      "pending_stock_value": 44910.0,
+      "total_cost": 3035995.044622236
+    }
+  ],
+  "relative_reduction_vs_manual": {
+    "seasonal_naive": {
+      "waste_cost": 0.8765498569560706,
+      "stockout_rate": -2.446194225721785,
+      "total_cost": -0.053869746232992656
+    },
+    "ml": {
+      "waste_cost": 0.9614104048053744,
+      "stockout_rate": -0.81496062992126,
+      "total_cost": 0.0020497695791949536
+    }
+  }
+}
+exit_code=0
+Regenerated model selection/WAPE and all policy summary numbers match saved results: PASS
+Live CLI API: loopback startup and ready health PASS
+GET /forecast/items?days=1: HTTP 200; 10 rows
+GET /forecast/materials?days=1: HTTP 200; 10 rows
+GET /recommendations/orders: HTTP 200; 10 rows
+GET /inventory: HTTP 200; 10 rows
+GET /model/metrics: HTTP 200; saved model/simulation measurements available
+POST /whatif: HTTP 200; point-total change=-51.808763
+GET /forecast/items?days=31: HTTP 422; limit validation PASS
+Traceback (most recent call last):
+  File "C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\src\verification\phase_6.py", line 103, in live_smoke
+    resolve_path(config, "api_schema").write_text(
+  File "C:\Users\aamit\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1078, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aamit\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\aamit\\OneDrive\\Desktop\\ProjectX\\coffee-inventory-ml\\data\\processed\\.pipeline_staging\\final_workflow_k8l_qtj5\\api_schema\\api_openapi.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\aamit\AppData\Local\Programs\Python\Python311\Lib\shutil.py", line 632, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aamit\\OneDrive\\Desktop\\ProjectX\\coffee-inventory-ml\\data\\processed\\.pipeline_staging\\final_workflow_k8l_qtj5\\pipeline_staging\\.pipeline_staging\\api_verify_orv3stxt\\server.log'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\src\verification\phase_8.py", line 117, in main
+    isolated_workflow(config)
+  File "C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\src\verification\phase_8.py", line 89, in isolated_workflow
+    live_smoke(settings)
+  File "C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\src\verification\phase_6.py", line 32, in live_smoke
+    with TemporaryDirectory(dir=staging, prefix="api_verify_") as directory:
+  File "C:\Users\aamit\AppData\Local\Programs\Python\Python311\Lib\tempfile.py", line 943, in __exit__
+    self.cleanup()
+  File "C:\Users\aamit\AppData\Local\Programs\Python\Python311\Lib\tempfile.py", line 947, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\aamit\AppData\Local\Programs\Python\Python311\Lib\tempfile.py", line 929, in _rmtree
+    _shutil.rmtree(name, onerror=onerror)
+  File "C:\Users\aamit\AppData\Local\Programs\Python\Python311\Lib\shutil.py", line 787, in rmtree
+    return _rmtree_unsafe(path, onerror)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aamit\AppData\Local\Programs\Python\Python311\Lib\shutil.py", line 634, in _rmtree_unsafe
+    onerror(os.unlink, fullname, sys.exc_info())
+  File "C:\Users\aamit\AppData\Local\Programs\Python\Python311\Lib\tempfile.py", line 893, in onerror
+    _os.unlink(path)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aamit\\OneDrive\\Desktop\\ProjectX\\coffee-inventory-ml\\data\\processed\\.pipeline_staging\\final_workflow_k8l_qtj5\\pipeline_staging\\.pipeline_staging\\api_verify_orv3stxt\\server.log'

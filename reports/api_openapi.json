@@ -1,0 +1,860 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Coffee Inventory ML",
+    "description": "Past-only forecasts and local aggregate inventory planning. Scenario predictions are associations.",
+    "version": "0.6.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/forecast/items": {
+      "get": {
+        "summary": "Forecast Items",
+        "operationId": "forecast_items_forecast_items_get",
+        "parameters": [
+          {
+            "name": "days",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 7,
+              "title": "Days"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/forecast/materials": {
+      "get": {
+        "summary": "Forecast Materials",
+        "operationId": "forecast_materials_forecast_materials_get",
+        "parameters": [
+          {
+            "name": "days",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 7,
+              "title": "Days"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaterialResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recommendations/orders": {
+      "get": {
+        "summary": "Recommendations",
+        "operationId": "recommendations_recommendations_orders_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inventory": {
+      "get": {
+        "summary": "Inventory",
+        "operationId": "inventory_inventory_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Update Inventory",
+        "operationId": "update_inventory_inventory_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/whatif": {
+      "post": {
+        "summary": "Whatif",
+        "operationId": "whatif_whatif_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WhatIfRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WhatIfResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/model/metrics": {
+      "get": {
+        "summary": "Metrics",
+        "operationId": "metrics_model_metrics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "as_of_date": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of Date"
+          },
+          "model_available": {
+            "type": "boolean",
+            "title": "Model Available"
+          },
+          "data_available": {
+            "type": "boolean",
+            "title": "Data Available"
+          },
+          "inventory_available": {
+            "type": "boolean",
+            "title": "Inventory Available"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "as_of_date",
+          "model_available",
+          "data_available",
+          "inventory_available"
+        ],
+        "title": "HealthResponse"
+      },
+      "InventoryResponse": {
+        "properties": {
+          "as_of_date": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of Date"
+          },
+          "version": {
+            "type": "integer",
+            "title": "Version"
+          },
+          "illustrative": {
+            "type": "boolean",
+            "title": "Illustrative"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/InventoryRow"
+            },
+            "type": "array",
+            "title": "Rows"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "as_of_date",
+          "version",
+          "illustrative",
+          "rows"
+        ],
+        "title": "InventoryResponse"
+      },
+      "InventoryRow": {
+        "properties": {
+          "material": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Material"
+          },
+          "on_hand": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "On Hand"
+          },
+          "on_order": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "On Order",
+            "default": 0
+          },
+          "arrival_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrival Date"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "material",
+          "on_hand"
+        ],
+        "title": "InventoryRow"
+      },
+      "InventoryUpdate": {
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Version"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/InventoryRow"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Rows"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_version",
+          "rows"
+        ],
+        "title": "InventoryUpdate"
+      },
+      "ItemForecast": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "item": {
+            "type": "string",
+            "title": "Item"
+          },
+          "forecast": {
+            "type": "number",
+            "title": "Forecast"
+          },
+          "p10": {
+            "type": "number",
+            "title": "P10"
+          },
+          "p50": {
+            "type": "number",
+            "title": "P50"
+          },
+          "p90": {
+            "type": "number",
+            "title": "P90"
+          },
+          "horizon_day": {
+            "type": "integer",
+            "title": "Horizon Day"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "date",
+          "item",
+          "forecast",
+          "p10",
+          "p50",
+          "p90",
+          "horizon_day"
+        ],
+        "title": "ItemForecast"
+      },
+      "ItemResponse": {
+        "properties": {
+          "as_of_date": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of Date"
+          },
+          "days": {
+            "type": "integer",
+            "title": "Days"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "scenario": {
+            "type": "boolean",
+            "title": "Scenario",
+            "default": false
+          },
+          "forecasts": {
+            "items": {
+              "$ref": "#/components/schemas/ItemForecast"
+            },
+            "type": "array",
+            "title": "Forecasts"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "as_of_date",
+          "days",
+          "model",
+          "forecasts",
+          "limitations"
+        ],
+        "title": "ItemResponse"
+      },
+      "MaterialForecast": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "material": {
+            "type": "string",
+            "title": "Material"
+          },
+          "need": {
+            "type": "number",
+            "title": "Need"
+          },
+          "need_p10": {
+            "type": "number",
+            "title": "Need P10"
+          },
+          "need_p50": {
+            "type": "number",
+            "title": "Need P50"
+          },
+          "need_p90": {
+            "type": "number",
+            "title": "Need P90"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "expected_cost": {
+            "type": "number",
+            "title": "Expected Cost"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "date",
+          "material",
+          "need",
+          "need_p10",
+          "need_p50",
+          "need_p90",
+          "unit",
+          "expected_cost"
+        ],
+        "title": "MaterialForecast"
+      },
+      "MaterialResponse": {
+        "properties": {
+          "as_of_date": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of Date"
+          },
+          "days": {
+            "type": "integer",
+            "title": "Days"
+          },
+          "requirements": {
+            "items": {
+              "$ref": "#/components/schemas/MaterialForecast"
+            },
+            "type": "array",
+            "title": "Requirements"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "as_of_date",
+          "days",
+          "requirements",
+          "limitations"
+        ],
+        "title": "MaterialResponse"
+      },
+      "MetricsResponse": {
+        "properties": {
+          "metrics": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metrics"
+          },
+          "simulation": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Simulation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "metrics"
+        ],
+        "title": "MetricsResponse"
+      },
+      "OrderResponse": {
+        "properties": {
+          "as_of_date": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of Date"
+          },
+          "forecast_days": {
+            "type": "integer",
+            "title": "Forecast Days"
+          },
+          "inventory_version": {
+            "type": "integer",
+            "title": "Inventory Version"
+          },
+          "illustrative_inventory": {
+            "type": "boolean",
+            "title": "Illustrative Inventory"
+          },
+          "recommendations": {
+            "items": {
+              "$ref": "#/components/schemas/Recommendation"
+            },
+            "type": "array",
+            "title": "Recommendations"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "as_of_date",
+          "forecast_days",
+          "inventory_version",
+          "illustrative_inventory",
+          "recommendations",
+          "limitations"
+        ],
+        "title": "OrderResponse"
+      },
+      "Recommendation": {
+        "properties": {
+          "material": {
+            "type": "string",
+            "title": "Material"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "order_now": {
+            "type": "boolean",
+            "title": "Order Now"
+          },
+          "order_qty": {
+            "type": "number",
+            "title": "Order Qty"
+          },
+          "order_by_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Order By Date"
+          },
+          "expected_arrival": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Arrival"
+          },
+          "planning_arrival_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Planning Arrival Date"
+          },
+          "safety_stock": {
+            "type": "number",
+            "title": "Safety Stock"
+          },
+          "reorder_point": {
+            "type": "number",
+            "title": "Reorder Point"
+          },
+          "coverage_days": {
+            "type": "integer",
+            "title": "Coverage Days"
+          },
+          "pre_arrival_shortfall": {
+            "type": "number",
+            "title": "Pre Arrival Shortfall"
+          },
+          "unmet_order_quantity": {
+            "type": "number",
+            "title": "Unmet Order Quantity"
+          },
+          "estimated_order_cost": {
+            "type": "number",
+            "title": "Estimated Order Cost"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "material",
+          "unit",
+          "order_now",
+          "order_qty",
+          "order_by_date",
+          "expected_arrival",
+          "planning_arrival_date",
+          "safety_stock",
+          "reorder_point",
+          "coverage_days",
+          "pre_arrival_shortfall",
+          "unmet_order_quantity",
+          "estimated_order_cost",
+          "reason"
+        ],
+        "title": "Recommendation"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "WhatIfRequest": {
+        "properties": {
+          "days": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Days",
+            "default": 7
+          },
+          "temp_max": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temp Max"
+          },
+          "temp_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temp Min"
+          },
+          "rainfall": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rainfall"
+          },
+          "promotions": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Promotions"
+          },
+          "festivals": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "propertyNames": {
+              "format": "date"
+            },
+            "type": "object",
+            "title": "Festivals"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "WhatIfRequest"
+      },
+      "WhatIfResponse": {
+        "properties": {
+          "baseline": {
+            "$ref": "#/components/schemas/ItemResponse"
+          },
+          "scenario": {
+            "$ref": "#/components/schemas/ItemResponse"
+          },
+          "material_requirements": {
+            "$ref": "#/components/schemas/MaterialResponse"
+          },
+          "point_total_change": {
+            "type": "number",
+            "title": "Point Total Change"
+          },
+          "interpretation": {
+            "type": "string",
+            "title": "Interpretation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "baseline",
+          "scenario",
+          "material_requirements",
+          "point_total_change",
+          "interpretation"
+        ],
+        "title": "WhatIfResponse"
+      }
+    }
+  }
+}

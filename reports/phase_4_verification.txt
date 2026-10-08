@@ -1,0 +1,85 @@
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pytest -q
+........................................................................ [ 50%]
+......................................................................   [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+.venv\Lib\site-packages\matplotlib\_mathtext.py:45
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+142 passed, 14 warnings in 19.37s
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff check src tests
+All checks passed!
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff format --check src tests
+48 files already formatted
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pip check
+No broken requirements found.
+exit_code=0
+$ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\tasks.ps1 -Task inventory
+{
+  "origin": "2025-07-20",
+  "forecast_days": 11,
+  "item_forecast_rows": 110,
+  "material_forecast_rows": 110,
+  "materials": 10,
+  "orders_now": 10,
+  "estimated_order_cost": 88365.0,
+  "currency": "INR",
+  "illustrative_snapshot": true,
+  "materials_with_pre_arrival_shortfall": 4,
+  "materials_with_unmet_order_quantity": 4
+}
+exit_code=0
+Protected feature/model source reference scan: PASS
+Forecast/BOM recomputation: PASS; 110 item rows, 110 material rows, 11 days
+Ten-material recommendation replay, expiry caps, MOQ and pack multiples: PASS
+CSV newline audit: PASS; no doubled carriage returns
+Recommendations (complete):
+       material unit  order_now  order_qty  safety_stock  pre_arrival_shortfall  unmet_order_quantity                                                                                                                                                                                 reason
+   coffee_beans    g       True    51000.0   5169.158035               0.000000              0.000000                                                                                                                        inventory position at/below reorder point or projected shortage
+           milk   ml       True    55000.0  27355.036107               0.000000          28249.747381                                                              inventory position at/below reorder point or projected shortage; shelf-life capacity limits safety stock or pack rounding
+          sugar    g       True    23000.0   2234.314287               0.000000              0.000000                                                                                                                        inventory position at/below reorder point or projected shortage
+chocolate_syrup   ml       True     8000.0    674.680244               0.000000              0.000000                                                                                                                        inventory position at/below reorder point or projected shortage
+     tea_leaves    g       True     2500.0    201.593546               0.000000              0.000000                                                                                                                        inventory position at/below reorder point or projected shortage
+            ice    g       True    44000.0   6286.509668               0.000000           6856.445763                                                              inventory position at/below reorder point or projected shortage; shelf-life capacity limits safety stock or pack rounding
+croissant_dough  pcs       True       30.0     16.147328               2.740446             20.996855 inventory position at/below reorder point or projected shortage; stock shortage before new delivery; expedite or adjust menu; shelf-life capacity limits safety stock or pack rounding
+          bread  pcs       True       80.0     44.859456               6.038982             46.175964 inventory position at/below reorder point or projected shortage; stock shortage before new delivery; expedite or adjust menu; shelf-life capacity limits safety stock or pack rounding
+        cup_hot  pcs       True     3000.0    310.750606             349.098200              0.000000                                                           inventory position at/below reorder point or projected shortage; stock shortage before new delivery; expedite or adjust menu
+       cup_cold  pcs       True      900.0    110.544998              86.932573              0.000000                                                           inventory position at/below reorder point or projected shortage; stock shortage before new delivery; expedite or adjust menu
+No source artifacts changed (SHA-256):
+sales_csv: f0cfccbacc248a03ca2594f8e07d5357fe23e29302b20667ce38639397bf82d1; unchanged=True
+truth_csv: 747553c6fcf8c0a3fc1a512b1d089c00ee5b99ced7b3597e8a536b0a2c218a87; unchanged=True
+weather_cache: 8de5227a7cff4939e554a3257572ebe1e92a51cc02f76c632a03717bf0a441f2; unchanged=True
+database: 12cf4d174c631000756f3ecdd3d4d7d782fc8e3ad003a5282daaf806e20ef078; unchanged=True
+truth_database: a4e210e059cb4413c75494aa41d4278af12d27fa1d484ff1f04e0635208381c1; unchanged=True
+features_csv: a5e512e7f7ec05cd44185c3b3f984a7a630262f38bb207a367ccc936405d14ba; unchanged=True
+model_bundle: cbd62bcd640d7d629d6f002a9947e3ad94d88a08414948ddd84c2d4e99e7ce9f; unchanged=True
+demo_forecast: 1ad2a54404b8e0928dd8c2f5b31c2b8500e136d3509094669391515ae45ac357; unchanged=True
+Pre-1.5 backup integrity: 11 artifacts unchanged
+Weather regression tests use mocked API responses; inventory planning uses existing cached observations.
+Phase 4 complete. Stop before Phase 5 simulation.

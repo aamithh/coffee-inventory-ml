@@ -1,0 +1,33 @@
+{
+  "forecast": 54.259332412705426,
+  "raw_model_estimate": 54.259332412705504,
+  "reference": 43.06334383438392,
+  "method": "additive SHAP association; not causal",
+  "drivers": [
+    {
+      "feature": "day_of_week",
+      "contribution": 4.846111471980016,
+      "explanation": "day of week raised the model estimate by 4.85 units relative to its reference."
+    },
+    {
+      "feature": "history_days",
+      "contribution": 3.816796964157435,
+      "explanation": "history days raised the model estimate by 3.82 units relative to its reference."
+    },
+    {
+      "feature": "rainfall",
+      "contribution": 1.1637398913209247,
+      "explanation": "Forecast rainfall raised the model estimate by 1.16 units relative to its reference."
+    },
+    {
+      "feature": "sales_rolling_mean_7",
+      "contribution": 0.7804259705655955,
+      "explanation": "sales rolling mean 7 raised the model estimate by 0.78 units relative to its reference."
+    },
+    {
+      "feature": "promo_flag",
+      "contribution": -0.6970102852778206,
+      "explanation": "No planned promotion lowered the model estimate by 0.70 units relative to its reference."
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pytest -q
+........................................................................ [ 36%]
+........................................................................ [ 72%]
+.......................................................                  [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\starlette\testclient.py:37
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\starlette\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+.venv\Lib\site-packages\matplotlib\_mathtext.py:45
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+199 passed, 15 warnings in 27.57s
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff check src tests
+All checks passed!
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff format --check src tests
+57 files already formatted
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pip check
+No broken requirements found.
+exit_code=0
+Live CLI API: loopback startup and ready health PASS
+GET /forecast/items?days=1: HTTP 200; 10 rows
+GET /forecast/materials?days=1: HTTP 200; 10 rows
+GET /recommendations/orders: HTTP 200; 10 rows
+GET /inventory: HTTP 200; 10 rows
+GET /model/metrics: HTTP 200; saved model/simulation measurements available
+POST /whatif: HTTP 200; point-total change=-51.808763
+GET /forecast/items?days=31: HTTP 422; limit validation PASS
+GET /docs and /openapi.json: HTTP 200; seven business paths, eight endpoint operations
+Live server output (complete):
+INFO:     Started server process [67900]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:51933 (Press CTRL+C to quit)
+INFO:     127.0.0.1:51935 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51935 - "GET /forecast/items?days=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51935 - "GET /forecast/materials?days=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51935 - "GET /recommendations/orders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51935 - "GET /inventory HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51935 - "GET /model/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51935 - "POST /whatif HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51935 - "GET /forecast/items?days=31 HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:51935 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51935 - "GET /openapi.json HTTP/1.1" 200 OK
+Protected feature/model source reference scan: PASS
+Prior source artifacts unchanged (SHA-256):
+sales_csv: f0cfccbacc248a03ca2594f8e07d5357fe23e29302b20667ce38639397bf82d1; unchanged=True
+truth_csv: 747553c6fcf8c0a3fc1a512b1d089c00ee5b99ced7b3597e8a536b0a2c218a87; unchanged=True
+weather_cache: 8de5227a7cff4939e554a3257572ebe1e92a51cc02f76c632a03717bf0a441f2; unchanged=True
+database: 12cf4d174c631000756f3ecdd3d4d7d782fc8e3ad003a5282daaf806e20ef078; unchanged=True
+truth_database: a4e210e059cb4413c75494aa41d4278af12d27fa1d484ff1f04e0635208381c1; unchanged=True
+features_csv: a5e512e7f7ec05cd44185c3b3f984a7a630262f38bb207a367ccc936405d14ba; unchanged=True
+model_bundle: cbd62bcd640d7d629d6f002a9947e3ad94d88a08414948ddd84c2d4e99e7ce9f; unchanged=True
+demo_forecast: 1ad2a54404b8e0928dd8c2f5b31c2b8500e136d3509094669391515ae45ac357; unchanged=True
+inventory_orders: e56839153aa91a18552e0072e1d0938d058e7f3f1fdca121ab91f9c36bef3dd3; unchanged=True
+simulation: d134d8ebc9e3058926e7b2c76727a9ede055b63ed7e1e4f74de5e834357221df; unchanged=True
+simulation_metrics: 190f41e06f9433673307986ce25a173f57e695bed1564453af22512c674e144c; unchanged=True
+simulation_forecasts: 4bdfa5247262cabddbe0918353485549699d62b480105568acd9e91a28b0fb52; unchanged=True
+Live smoke leaves persistent inventory state unchanged: PASS
+Pre-1.5 backup integrity: 11 artifacts unchanged
+Weather regressions use mocks; live smoke uses only local loopback HTTP.
+Phase 6 complete. Stop before Phase 7 dashboard.

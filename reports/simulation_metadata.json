@@ -1,0 +1,16 @@
+{
+  "fingerprint": "50b36f902489254bce34c5bd119f53f02eb019b8e1f91de987afd58a38772af3",
+  "initial_quantities": {
+    "coffee_beans": 19935.79714285714,
+    "milk": 190152.0,
+    "sugar": 10670.21142857143,
+    "chocolate_syrup": 3436.4571428571435,
+    "tea_leaves": 881.0914285714287,
+    "ice": 32899.885714285716,
+    "croissant_dough": 38.417142857142856,
+    "bread": 85.86,
+    "cup_hot": 1151.2457142857145,
+    "cup_cold": 290.0185714285714
+  },
+  "forecast_sha256": "4bdfa5247262cabddbe0918353485549699d62b480105568acd9e91a28b0fb52"
+}

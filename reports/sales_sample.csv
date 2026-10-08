@@ -1,0 +1,21 @@
+date,day_of_week,weekend_flag,day_of_month,week_of_year,month,month_end_flag,holiday_flag,holiday_name,festival_flag,festival_name,days_to_next_festival,days_since_last_festival,payday_flag,long_weekend_flag,temp_max,temp_min,rainfall,rain_flag,weather_source,item,category,price,promo_flag,sales,stockout_flag,closure_flag,missing_flag,outlier_flag,record_status,usable_for_training
+2023-01-01,6,1,1,52,1,0,0,,1,New Year,0,0,1,0,27.5,14.9,0.0,0,open_meteo,americano,hot_drink,110.0,0,31.0,0,0,0,0,clean,True
+2023-01-01,6,1,1,52,1,0,0,,1,New Year,0,0,1,0,27.5,14.9,0.0,0,open_meteo,cappuccino,hot_drink,150.0,0,70.0,0,0,0,0,clean,True
+2023-01-01,6,1,1,52,1,0,0,,1,New Year,0,0,1,0,27.5,14.9,0.0,0,open_meteo,cold_coffee,cold_drink,180.0,0,46.0,0,0,0,0,clean,True
+2023-01-01,6,1,1,52,1,0,0,,1,New Year,0,0,1,0,27.5,14.9,0.0,0,open_meteo,croissant,bakery,140.0,0,50.0,0,0,0,0,clean,True
+2023-01-01,6,1,1,52,1,0,0,,1,New Year,0,0,1,0,27.5,14.9,0.0,0,open_meteo,espresso,hot_drink,90.0,0,73.0,0,0,0,0,clean,True
+2023-01-01,6,1,1,52,1,0,0,,1,New Year,0,0,1,0,27.5,14.9,0.0,0,open_meteo,hot_chocolate,hot_drink,170.0,0,30.0,0,0,0,0,clean,True
+2023-01-01,6,1,1,52,1,0,0,,1,New Year,0,0,1,0,27.5,14.9,0.0,0,open_meteo,iced_latte,cold_drink,180.0,0,40.0,0,0,0,0,clean,True
+2023-01-01,6,1,1,52,1,0,0,,1,New Year,0,0,1,0,27.5,14.9,0.0,0,open_meteo,latte,hot_drink,160.0,0,62.0,0,0,0,0,clean,True
+2023-01-01,6,1,1,52,1,0,0,,1,New Year,0,0,1,0,27.5,14.9,0.0,0,open_meteo,masala_chai,hot_drink,80.0,0,46.0,0,0,0,0,clean,True
+2023-01-01,6,1,1,52,1,0,0,,1,New Year,0,0,1,0,27.5,14.9,0.0,0,open_meteo,sandwich,food,180.0,0,31.0,0,0,0,0,clean,True
+2023-01-02,0,0,2,1,1,0,0,,0,,65,1,1,0,26.7,15.5,0.0,0,open_meteo,americano,hot_drink,110.0,0,36.0,0,0,0,0,clean,True
+2023-01-02,0,0,2,1,1,0,0,,0,,65,1,1,0,26.7,15.5,0.0,0,open_meteo,cappuccino,hot_drink,150.0,0,35.0,0,0,0,0,clean,True
+2023-01-02,0,0,2,1,1,0,0,,0,,65,1,1,0,26.7,15.5,0.0,0,open_meteo,cold_coffee,cold_drink,180.0,0,32.0,0,0,0,0,clean,True
+2023-01-02,0,0,2,1,1,0,0,,0,,65,1,1,0,26.7,15.5,0.0,0,open_meteo,croissant,bakery,140.0,0,10.0,1,0,0,0,stockout,False
+2023-01-02,0,0,2,1,1,0,0,,0,,65,1,1,0,26.7,15.5,0.0,0,open_meteo,espresso,hot_drink,90.0,0,26.0,1,0,0,0,stockout,False
+2023-01-02,0,0,2,1,1,0,0,,0,,65,1,1,0,26.7,15.5,0.0,0,open_meteo,hot_chocolate,hot_drink,170.0,0,18.0,0,0,0,0,clean,True
+2023-01-02,0,0,2,1,1,0,0,,0,,65,1,1,0,26.7,15.5,0.0,0,open_meteo,iced_latte,cold_drink,180.0,0,18.0,0,0,0,0,clean,True
+2023-01-02,0,0,2,1,1,0,0,,0,,65,1,1,0,26.7,15.5,0.0,0,open_meteo,latte,hot_drink,160.0,0,45.0,0,0,0,0,clean,True
+2023-01-02,0,0,2,1,1,0,0,,0,,65,1,1,0,26.7,15.5,0.0,0,open_meteo,masala_chai,hot_drink,80.0,0,33.0,0,0,0,0,clean,True
+2023-01-02,0,0,2,1,1,0,0,,0,,65,1,1,0,26.7,15.5,0.0,0,open_meteo,sandwich,food,180.0,0,19.0,0,0,0,0,clean,True

@@ -1,0 +1,229 @@
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pytest -q
+........................................................................ [ 91%]
+.......                                                                  [100%]
+============================== warnings summary ===============================
+tests/test_environment.py::test_required_library_import[lightgbm]
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+tests/test_environment.py::test_required_library_import[lightgbm]
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+tests/test_environment.py::test_required_library_import[shap]
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+79 passed, 14 warnings in 18.55s
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff check src tests
+All checks passed!
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff format --check src tests
+37 files already formatted
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m src.cli setup-check
+No broken requirements found.
+Python: 3.11.9
+Executable: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe
+Virtual environment: True
+Required library imports: 17 OK
+{
+  "train_start": "2023-01-01",
+  "train_end": "2025-02-05",
+  "val_start": "2025-02-06",
+  "val_end": "2025-07-19",
+  "test_start": "2025-07-20",
+  "test_end": "2025-12-31",
+  "as_of_date": "2025-07-20",
+  "forecast_horizon_days": 7,
+  "calendar_required_through": "2025-07-27",
+  "drift_start": "2025-02-06",
+  "drift_plateau_date": "2025-08-05",
+  "drift_start_split": "val",
+  "drift_ramp_overlap_days": {
+    "train": 0,
+    "val": 164,
+    "test": 16
+  },
+  "drift_appears_in_test": true,
+  "test_contains_shifted_demand": true,
+  "split_rule": "floor(train*n), floor(validation*n), remainder to test; never shuffle"
+}
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m src.cli train
+Not implemented until Phase 3
+exit_code=2
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m src.cli simulate
+Not implemented until Phase 5
+exit_code=2
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m src.cli api
+Not implemented until Phase 6
+exit_code=2
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m src.cli dashboard
+Not implemented until Phase 7
+exit_code=2
+PIPELINE RUN 1
+Pipeline start; requested weather provider: auto
+OneDrive warning: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml. Use a non-synced location such as C:/dev/coffee-inventory-ml, exclude data/processed from sync, or set COFFEE_DB_DIR. SQLite uses DELETE journaling.
+WARNING:src.data.generator:OneDrive warning: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml. Use a non-synced location such as C:/dev/coffee-inventory-ml, exclude data/processed from sync, or set COFFEE_DB_DIR. SQLite uses DELETE journaling.
+Weather source (start): open_meteo
+INFO:src.data.generator:Weather source (start): open_meteo
+Weather source (end): open_meteo; pipeline succeeded
+INFO:src.data.generator:Weather source (end): open_meteo; pipeline succeeded
+PIPELINE RUN 2
+Pipeline start; requested weather provider: auto
+OneDrive warning: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml. Use a non-synced location such as C:/dev/coffee-inventory-ml, exclude data/processed from sync, or set COFFEE_DB_DIR. SQLite uses DELETE journaling.
+WARNING:src.data.generator:OneDrive warning: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml. Use a non-synced location such as C:/dev/coffee-inventory-ml, exclude data/processed from sync, or set COFFEE_DB_DIR. SQLite uses DELETE journaling.
+Weather source (start): open_meteo
+INFO:src.data.generator:Weather source (start): open_meteo
+Weather source (end): open_meteo; pipeline succeeded
+INFO:src.data.generator:Weather source (end): open_meteo; pipeline succeeded
+CSV and database CONTENT SHA-256 (run 1 / run 2)
+sales_csv: f0cfccbacc248a03ca2594f8e07d5357fe23e29302b20667ce38639397bf82d1 / f0cfccbacc248a03ca2594f8e07d5357fe23e29302b20667ce38639397bf82d1 identical=True
+truth_csv: 747553c6fcf8c0a3fc1a512b1d089c00ee5b99ced7b3597e8a536b0a2c218a87 / 747553c6fcf8c0a3fc1a512b1d089c00ee5b99ced7b3597e8a536b0a2c218a87 identical=True
+weather_cache: 8de5227a7cff4939e554a3257572ebe1e92a51cc02f76c632a03717bf0a441f2 / 8de5227a7cff4939e554a3257572ebe1e92a51cc02f76c632a03717bf0a441f2 identical=True
+database:sales: be313aa5c01ee31952c7f6771acc7300b59de355ae188b8e714caf55e25de033 / be313aa5c01ee31952c7f6771acc7300b59de355ae188b8e714caf55e25de033 identical=True
+database:weather: fd36437e702053641c128d89809c7a8aacb813fb66c7cc66219a48094e60052b / fd36437e702053641c128d89809c7a8aacb813fb66c7cc66219a48094e60052b identical=True
+truth_database:simulation_truth: 083a955af35725bedbe542a934c5004b2cbd5fdc07afe965f3685503dd2d41f1 / 083a955af35725bedbe542a934c5004b2cbd5fdc07afe965f3685503dd2d41f1 identical=True
+Reconciliation:
+{
+  "latent_units": 484775,
+  "observed_units": 484112,
+  "gap": 663,
+  "stockout_loss": 5020,
+  "missing_loss": 2420,
+  "outlier_excess": 6777,
+  "unexplained_gap": 0
+}
+Closure days=9, rows=90, all 10 items zero observed and latent=True
+Negative observed counts=0; noninteger observed counts=0
+Clean-row weather comparisons (actual descriptive means):
+{
+  "cold_coffee": {
+    "hot_mean": 66.72881355932203,
+    "normal_mean": 44.34893617021277,
+    "hot_rows": 354,
+    "normal_rows": 705,
+    "expected_direction_observed": true
+  },
+  "iced_latte": {
+    "hot_mean": 49.68604651162791,
+    "normal_mean": 34.19027181688126,
+    "hot_rows": 344,
+    "normal_rows": 699,
+    "expected_direction_observed": true
+  },
+  "hot_chocolate": {
+    "rainy_mean": 31.311377245508982,
+    "dry_mean": 23.111721611721613,
+    "rainy_rows": 501,
+    "dry_rows": 546,
+    "expected_direction_observed": true
+  },
+  "masala_chai": {
+    "rainy_mean": 62.4859437751004,
+    "dry_mean": 45.78481012658228,
+    "rainy_rows": 498,
+    "dry_rows": 553,
+    "expected_direction_observed": true
+  }
+}
+Per-item promotion counts:
+{
+  "americano": 74,
+  "cappuccino": 69,
+  "cold_coffee": 77,
+  "croissant": 59,
+  "espresso": 66,
+  "hot_chocolate": 84,
+  "iced_latte": 69,
+  "latte": 61,
+  "masala_chai": 56,
+  "sandwich": 72
+}
+Mean cross-item normalized residual correlation: sigma=0 0.005194492109425326; sigma=0.07 0.08218818233882166; increase=0.07699369022939634
+Exclusive record statuses:
+{
+  "closed": 90,
+  "missing": 56,
+  "stockout": 266,
+  "outlier": 67,
+  "clean": 10481
+}
+Training-eligible rows=10481
+As-of, chronological splits, drift:
+{
+  "train_start": "2023-01-01",
+  "train_end": "2025-02-05",
+  "val_start": "2025-02-06",
+  "val_end": "2025-07-19",
+  "test_start": "2025-07-20",
+  "test_end": "2025-12-31",
+  "as_of_date": "2025-07-20",
+  "forecast_horizon_days": 7,
+  "calendar_required_through": "2025-07-27",
+  "drift_start": "2025-02-06",
+  "drift_plateau_date": "2025-08-05",
+  "drift_start_split": "val",
+  "drift_ramp_overlap_days": {
+    "train": 0,
+    "val": 164,
+    "test": 16
+  },
+  "drift_appears_in_test": true,
+  "test_contains_shifted_demand": true,
+  "split_rule": "floor(train*n), floor(validation*n), remainder to test; never shuffle"
+}
+Protected-folder truth reference scan: PASS
+database: tables=['calendar', 'materials', 'menu', 'recipes', 'sales', 'weather']; integrity=ok; journal_mode=delete
+truth_database: tables=['simulation_truth']; integrity=ok; journal_mode=delete
+Pre-patch backup integrity: 11 artifacts unchanged
+Weather API outage/recovery verified with mocked responses; real historical cache reused.
+2027 lunar festival extension: TODO; pinned holiday data does not supply reliable Holi; missing coverage raises a tested validation error.
+Phase 1.5 verification complete. Phase 2 has not started.
+
+$ powershell -NoProfile -ExecutionPolicy Bypass -File .\tasks.ps1 -Task setup-check
+No broken requirements found.
+Python: 3.11.9
+Executable: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe
+Virtual environment: True
+Required library imports: 17 OK
+{
+  "train_start": "2023-01-01",
+  "train_end": "2025-02-05",
+  "val_start": "2025-02-06",
+  "val_end": "2025-07-19",
+  "test_start": "2025-07-20",
+  "test_end": "2025-12-31",
+  "as_of_date": "2025-07-20",
+  "forecast_horizon_days": 7,
+  "calendar_required_through": "2025-07-27",
+  "drift_start": "2025-02-06",
+  "drift_plateau_date": "2025-08-05",
+  "drift_start_split": "val",
+  "drift_ramp_overlap_days": {
+    "train": 0,
+    "val": 164,
+    "test": 16
+  },
+  "drift_appears_in_test": true,
+  "test_contains_shifted_demand": true,
+  "split_rule": "floor(train*n), floor(validation*n), remainder to test; never shuffle"
+}
+exit_code=0

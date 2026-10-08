@@ -1,0 +1,441 @@
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pytest -q
+........................................................................ [ 62%]
+............................................                             [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+.venv\Lib\site-packages\matplotlib\_mathtext.py:45
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+116 passed, 14 warnings in 19.21s
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff check src tests
+All checks passed!
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff format --check src tests
+45 files already formatted
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pip check
+No broken requirements found.
+exit_code=0
+$ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\tasks.ps1 -Task train
+CV candidate 1/4 complete: {'num_leaves': 15, 'learning_rate': 0.03}
+CV candidate 2/4 complete: {'num_leaves': 15, 'learning_rate': 0.05}
+CV candidate 3/4 complete: {'num_leaves': 31, 'learning_rate': 0.03}
+CV candidate 4/4 complete: {'num_leaves': 31, 'learning_rate': 0.05}
+Validation ML point selection: lightgbm; WAPE=0.207240
+Recursive test origins 4/23 complete
+Recursive test origins 8/23 complete
+Recursive test origins 12/23 complete
+Recursive test origins 16/23 complete
+Recursive test origins 20/23 complete
+{
+  "selected_point_model": "lightgbm",
+  "selection": "validation WAPE after train-only five-fold tuning",
+  "best_parameters": {
+    "num_leaves": 15,
+    "learning_rate": 0.03
+  },
+  "training_through": "2025-07-19",
+  "test_rows": 1593,
+  "one_day_test_metrics": [
+    {
+      "model": "ridge",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.20672707785944983,
+      "mae": 11.118490803367283,
+      "rmse": 14.642547139997916,
+      "bias": -0.7062035713100376,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "lightgbm",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.21492760998826535,
+      "mae": 11.559543528540244,
+      "rmse": 15.548871939553486,
+      "bias": -2.18610886597426,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "naive",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.29402912489155003,
+      "mae": 15.81389412010881,
+      "rmse": 20.890915309543782,
+      "bias": -0.1609123247541327,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.28905949087853217,
+      "mae": 15.546610169491526,
+      "rmse": 20.70440772643603,
+      "bias": -0.3166038920276208,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "moving_average",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.232384698454939,
+      "mae": 12.498445580366484,
+      "rmse": 16.406700748847424,
+      "bias": -0.29345051265955224,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "quantile_p50",
+      "item": "overall",
+      "rows": 1593,
+      "wape": 0.21928874211312455,
+      "mae": 11.794100161974997,
+      "rmse": 15.966126727689879,
+      "bias": -3.2828901541078177,
+      "interval_coverage": 0.7407407407407407,
+      "mean_interval_width": 32.89390973602061
+    }
+  ],
+  "relative_wape_improvement": 0.2564589063135738,
+  "required_wape_improvement": 0.15,
+  "meets_requested_improvement": true,
+  "raw_quantile_crossings": 0,
+  "nominal_interval_coverage": 0.8,
+  "recursive_test_metrics": [
+    {
+      "model": "lightgbm",
+      "horizon_day": 1,
+      "rows": 224,
+      "wape": 0.20235057338307727,
+      "mae": 12.441850210737158,
+      "rmse": 16.986129370527646,
+      "bias": -2.8546696440153463,
+      "interval_coverage": 0.78125,
+      "mean_interval_width": 37.081062593876915
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 2,
+      "rows": 218,
+      "wape": 0.2503067043597271,
+      "mae": 11.983720520194824,
+      "rmse": 16.403029883094682,
+      "bias": -2.18195740649673,
+      "interval_coverage": 0.6743119266055045,
+      "mean_interval_width": 30.663778149564727
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 3,
+      "rows": 224,
+      "wape": 0.2166779827033463,
+      "mae": 10.911284128989937,
+      "rmse": 14.769251965092755,
+      "bias": -2.9999686459506205,
+      "interval_coverage": 0.7678571428571429,
+      "mean_interval_width": 31.255328578118192
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 4,
+      "rows": 219,
+      "wape": 0.20772302723483985,
+      "mae": 10.444958794109846,
+      "rmse": 13.80577251499552,
+      "bias": -1.2897739733675408,
+      "interval_coverage": 0.7671232876712328,
+      "mean_interval_width": 31.496523497238808
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 5,
+      "rows": 224,
+      "wape": 0.23665483224582143,
+      "mae": 11.636233581944095,
+      "rmse": 15.732397666134837,
+      "bias": -0.35339070117172705,
+      "interval_coverage": 0.7142857142857143,
+      "mean_interval_width": 30.226993969929612
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 6,
+      "rows": 222,
+      "wape": 0.19937137461378426,
+      "mae": 11.146835593271577,
+      "rmse": 14.282815274448888,
+      "bias": -3.8357436922626262,
+      "interval_coverage": 0.7432432432432432,
+      "mean_interval_width": 33.825821547893945
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": 7,
+      "rows": 223,
+      "wape": 0.2029759613373367,
+      "mae": 11.849063070356273,
+      "rmse": 15.420144404118952,
+      "bias": -0.4907855323024416,
+      "interval_coverage": 0.7982062780269058,
+      "mean_interval_width": 37.67359228500186
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 1,
+      "rows": 224,
+      "wape": 0.2977346983228055,
+      "mae": 18.30669642857143,
+      "rmse": 24.848633130463757,
+      "bias": 0.12217261904761896,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 2,
+      "rows": 218,
+      "wape": 0.3046820606176743,
+      "mae": 14.587003058103976,
+      "rmse": 19.339800537012188,
+      "bias": -0.10382262996941899,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 3,
+      "rows": 224,
+      "wape": 0.2744473995271867,
+      "mae": 13.820386904761904,
+      "rmse": 17.75556376584132,
+      "bias": -0.11264880952380953,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 4,
+      "rows": 219,
+      "wape": 0.2790713161399685,
+      "mae": 14.032572298325723,
+      "rmse": 18.695449108047608,
+      "bias": 0.08310502283105012,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 5,
+      "rows": 224,
+      "wape": 0.3326009321469645,
+      "mae": 16.35386904761905,
+      "rmse": 22.13929051536678,
+      "bias": 0.9610119047619047,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 6,
+      "rows": 222,
+      "wape": 0.26433021806853585,
+      "mae": 14.778678678678679,
+      "rmse": 18.886993103946125,
+      "bias": 0.14864864864864877,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": 7,
+      "rows": 223,
+      "wape": 0.2705868797050238,
+      "mae": 15.795964125560538,
+      "rmse": 20.72967335125246,
+      "bias": -0.6689088191330345,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    },
+    {
+      "model": "lightgbm",
+      "horizon_day": "overall",
+      "rows": 1554,
+      "wape": 0.2152539487155814,
+      "mae": 11.4893526577623,
+      "rmse": 15.381101323851572,
+      "bias": -2.0010978006334423,
+      "interval_coverage": 0.7496782496782497,
+      "mean_interval_width": 33.1860901013381
+    },
+    {
+      "model": "seasonal_naive",
+      "horizon_day": "overall",
+      "rows": 1554,
+      "wape": 0.28833457912376725,
+      "mae": 15.39009009009009,
+      "rmse": 20.480444122347333,
+      "bias": 0.06229086229086219,
+      "interval_coverage": null,
+      "mean_interval_width": null
+    }
+  ],
+  "limitations": [
+    "Synthetic shop data; no real-shop generalization claim.",
+    "Persistence weather is less informative than future realized weather, deliberately excluded.",
+    "One-day scores use earlier observed test history; recursive scores use predictions.",
+    "Quantile intervals are empirical and uncalibrated; recursive uncertainty is conditional on a predicted history path.",
+    "Cold-start point forecasts use past category means; quantile fallback uses training-category empirical quantiles.",
+    "SHAP drivers are model associations, not causal effects."
+  ]
+}
+exit_code=0
+Modeling notebook: 4 code cells executed; 3 embedded charts; schema validated
+Python: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe
+Validation-selected: lightgbm
+Relative one-day WAPE improvement: 0.2564589063135738
+Requested improvement achieved: True
+comparison
+intervals
+shap
+Trained through: 2025-07-19
+{
+  "forecast": 54.259332412705426,
+  "raw_model_estimate": 54.259332412705504,
+  "reference": 43.06334383438392,
+  "method": "additive SHAP association; not causal",
+  "drivers": [
+    {
+      "feature": "day_of_week",
+      "contribution": 4.846111471980016,
+      "explanation": "day of week raised the model estimate by 4.85 units relative to its reference."
+    },
+    {
+      "feature": "history_days",
+      "contribution": 3.816796964157435,
+      "explanation": "history days raised the model estimate by 3.82 units relative to its reference."
+    },
+    {
+      "feature": "rainfall",
+      "contribution": 1.1637398913209247,
+      "explanation": "Forecast rainfall raised the model estimate by 1.16 units relative to its reference."
+    },
+    {
+      "feature": "sales_rolling_mean_7",
+      "contribution": 0.7804259705655955,
+      "explanation": "sales rolling mean 7 raised the model estimate by 0.78 units relative to its reference."
+    },
+    {
+      "feature": "promo_flag",
+      "contribution": -0.6970102852778206,
+      "explanation": "The planned promotion lowered the model estimate by 0.70 units relative to its reference."
+    }
+  ]
+}
+
+Fixed-origin future sales/weather mutation: PASS
+Training cutoff before demo origin: PASS
+Protected feature/model reference scan: PASS
+Walk-forward: 5 folds; 40 model/candidate/fold rows; every training cutoff before validation
+Saved artifact reload vs exported test predictions: PASS
+No source artifacts changed (SHA-256):
+sales_csv: f0cfccbacc248a03ca2594f8e07d5357fe23e29302b20667ce38639397bf82d1; unchanged=True
+truth_csv: 747553c6fcf8c0a3fc1a512b1d089c00ee5b99ced7b3597e8a536b0a2c218a87; unchanged=True
+weather_cache: 8de5227a7cff4939e554a3257572ebe1e92a51cc02f76c632a03717bf0a441f2; unchanged=True
+database: 12cf4d174c631000756f3ecdd3d4d7d782fc8e3ad003a5282daaf806e20ef078; unchanged=True
+truth_database: a4e210e059cb4413c75494aa41d4278af12d27fa1d484ff1f04e0635208381c1; unchanged=True
+features_csv: a5e512e7f7ec05cd44185c3b3f984a7a630262f38bb207a367ccc936405d14ba; unchanged=True
+Pre-1.5 backup integrity: 11 artifacts unchanged
+Optional SARIMAX remains disabled. No inventory engine or simulation implemented.
+Phase 3 complete. Stop before Phase 4.
+
+Final CSV formatting audit (no metric/prediction values changed):
+model_metrics_csv: 121 records unchanged; Windows CSV newline check=PASS
+model_predictions: 1593 records unchanged; Windows CSV newline check=PASS
+model_cv_results: 40 records unchanged; Windows CSV newline check=PASS
+model_recursive_metrics: 16 records unchanged; Windows CSV newline check=PASS
+demo_forecast: 70 records unchanged; Windows CSV newline check=PASS
+$ .\.venv\Scripts\python.exe -m ruff check src tests
+All checks passed!
+exit_code=0
+$ .\.venv\Scripts\python.exe -m ruff format --check src tests
+45 files already formatted
+exit_code=0
+
+Final notebook and local explanation audit:
+Modeling notebook: 4 code cells executed; 3 embedded charts; schema validated
+Python: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe
+Validation-selected: lightgbm
+Relative one-day WAPE improvement: 0.2564589063135738
+Requested improvement achieved: True
+comparison
+intervals
+shap
+Trained through: 2025-07-19
+{
+  "forecast": 54.259332412705426,
+  "raw_model_estimate": 54.259332412705504,
+  "reference": 43.06334383438392,
+  "method": "additive SHAP association; not causal",
+  "drivers": [
+    {
+      "feature": "day_of_week",
+      "contribution": 4.846111471980016,
+      "explanation": "day of week raised the model estimate by 4.85 units relative to its reference."
+    },
+    {
+      "feature": "history_days",
+      "contribution": 3.816796964157435,
+      "explanation": "history days raised the model estimate by 3.82 units relative to its reference."
+    },
+    {
+      "feature": "rainfall",
+      "contribution": 1.1637398913209247,
+      "explanation": "Forecast rainfall raised the model estimate by 1.16 units relative to its reference."
+    },
+    {
+      "feature": "sales_rolling_mean_7",
+      "contribution": 0.7804259705655955,
+      "explanation": "sales rolling mean 7 raised the model estimate by 0.78 units relative to its reference."
+    },
+    {
+      "feature": "promo_flag",
+      "contribution": -0.6970102852778206,
+      "explanation": "No planned promotion lowered the model estimate by 0.70 units relative to its reference."
+    }
+  ]
+}
+
+Fixed-origin future sales/weather mutation: PASS
+Training cutoff before demo origin: PASS

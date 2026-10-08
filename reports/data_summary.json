@@ -1,0 +1,186 @@
+{
+  "rows": 10960,
+  "days": 1096,
+  "items": 10,
+  "start_date": "2023-01-01",
+  "end_date": "2025-12-31",
+  "weather_source": [
+    "open_meteo"
+  ],
+  "observed_units_including_pos_outliers": 484112,
+  "latent_units": 484775,
+  "missing_rows": 56,
+  "outlier_rows": 67,
+  "stockout_rows": 266,
+  "closure_days": 9,
+  "promotion_days": 511,
+  "promotion_day_fraction": 0.46624087591240876,
+  "festival_days": 15,
+  "clean_weekday_mean": 42.30460921843687,
+  "clean_weekend_mean": 50.6588785046729,
+  "clean_weekend_weekday_ratio": 1.197478937651908,
+  "per_item": [
+    {
+      "item": "americano",
+      "observed_units": 39398,
+      "promo_days": 74,
+      "mean_daily_sales": 36.21139705882353,
+      "missing_rows": 8,
+      "stockout_rows": 28,
+      "clean_weekend_weekday_ratio": 1.1264682552233236
+    },
+    {
+      "item": "cappuccino",
+      "observed_units": 60688,
+      "promo_days": 69,
+      "mean_daily_sales": 55.67706422018349,
+      "missing_rows": 6,
+      "stockout_rows": 24,
+      "clean_weekend_weekday_ratio": 1.1571453571694508
+    },
+    {
+      "item": "cold_coffee",
+      "observed_units": 56560,
+      "promo_days": 77,
+      "mean_daily_sales": 51.70018281535649,
+      "missing_rows": 2,
+      "stockout_rows": 20,
+      "clean_weekend_weekday_ratio": 1.3188158517311015
+    },
+    {
+      "item": "croissant",
+      "observed_units": 35408,
+      "promo_days": 59,
+      "mean_daily_sales": 32.51423324150597,
+      "missing_rows": 7,
+      "stockout_rows": 28,
+      "clean_weekend_weekday_ratio": 1.307461352657005
+    },
+    {
+      "item": "espresso",
+      "observed_units": 56862,
+      "promo_days": 66,
+      "mean_daily_sales": 52.31094756209752,
+      "missing_rows": 9,
+      "stockout_rows": 27,
+      "clean_weekend_weekday_ratio": 1.1505844161615086
+    },
+    {
+      "item": "hot_chocolate",
+      "observed_units": 29307,
+      "promo_days": 84,
+      "mean_daily_sales": 26.788848263254113,
+      "missing_rows": 2,
+      "stockout_rows": 32,
+      "clean_weekend_weekday_ratio": 1.1739135548449495
+    },
+    {
+      "item": "iced_latte",
+      "observed_units": 42621,
+      "promo_days": 69,
+      "mean_daily_sales": 39.065994500458295,
+      "missing_rows": 5,
+      "stockout_rows": 31,
+      "clean_weekend_weekday_ratio": 1.3290241920077412
+    },
+    {
+      "item": "latte",
+      "observed_units": 67302,
+      "promo_days": 61,
+      "mean_daily_sales": 61.63186813186813,
+      "missing_rows": 4,
+      "stockout_rows": 20,
+      "clean_weekend_weekday_ratio": 1.157015586444655
+    },
+    {
+      "item": "masala_chai",
+      "observed_units": 57639,
+      "promo_days": 56,
+      "mean_daily_sales": 52.97702205882353,
+      "missing_rows": 8,
+      "stockout_rows": 25,
+      "clean_weekend_weekday_ratio": 1.1694708717943545
+    },
+    {
+      "item": "sandwich",
+      "observed_units": 38327,
+      "promo_days": 72,
+      "mean_daily_sales": 35.13015582034831,
+      "missing_rows": 5,
+      "stockout_rows": 31,
+      "clean_weekend_weekday_ratio": 1.1397682749201115
+    }
+  ],
+  "record_status_counts": {
+    "closed": 90,
+    "missing": 56,
+    "stockout": 266,
+    "outlier": 67,
+    "clean": 10481
+  },
+  "usable_for_training_rows": 10481,
+  "date_context": {
+    "train_start": "2023-01-01",
+    "train_end": "2025-02-05",
+    "val_start": "2025-02-06",
+    "val_end": "2025-07-19",
+    "test_start": "2025-07-20",
+    "test_end": "2025-12-31",
+    "as_of_date": "2025-07-20",
+    "forecast_horizon_days": 7,
+    "calendar_required_through": "2025-07-27",
+    "drift_start": "2025-02-06",
+    "drift_plateau_date": "2025-08-05",
+    "drift_start_split": "val",
+    "drift_ramp_overlap_days": {
+      "train": 0,
+      "val": 164,
+      "test": 16
+    },
+    "drift_appears_in_test": true,
+    "test_contains_shifted_demand": true,
+    "split_rule": "floor(train*n), floor(validation*n), remainder to test; never shuffle"
+  },
+  "reconciliation": {
+    "latent_units": 484775,
+    "observed_units": 484112,
+    "gap": 663,
+    "stockout_loss": 5020,
+    "missing_loss": 2420,
+    "outlier_excess": 6777,
+    "unexplained_gap": 0
+  },
+  "weather_effects_clean": {
+    "cold_coffee": {
+      "hot_mean": 66.72881355932203,
+      "normal_mean": 44.34893617021277,
+      "hot_rows": 354,
+      "normal_rows": 705
+    },
+    "iced_latte": {
+      "hot_mean": 49.68604651162791,
+      "normal_mean": 34.19027181688126,
+      "hot_rows": 344,
+      "normal_rows": 699
+    },
+    "hot_chocolate": {
+      "rainy_mean": 31.311377245508982,
+      "dry_mean": 23.111721611721613,
+      "rainy_rows": 501,
+      "dry_rows": 546
+    },
+    "masala_chai": {
+      "rainy_mean": 62.4859437751004,
+      "dry_mean": 45.78481012658228,
+      "rainy_rows": 498,
+      "dry_rows": 553
+    }
+  },
+  "cross_item_residual_correlation": 0.08218818233882166,
+  "notes": [
+    "Observed total retains injected POS over-recording errors and omits missing sales.",
+    "Pattern means exclude closures, missing, stockout and POS outlier rows.",
+    "Latent and expected demand are isolated oracle data, unavailable to the sales loader.",
+    "Historical reanalysis weather is a proxy; it is not known day-ahead forecast weather."
+  ]
+}

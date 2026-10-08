@@ -1,0 +1,50 @@
+{
+  "split": "train",
+  "rows": 7670,
+  "clean_rows": 7326,
+  "start_date": "2023-01-01",
+  "end_date": "2025-02-05",
+  "weekly_clean_mean": {
+    "0": 38.09942638623327,
+    "1": 39.64957264957265,
+    "2": 39.70037807183365,
+    "3": 40.04381694255112,
+    "4": 42.727878211227406,
+    "5": 47.975190839694655,
+    "6": 47.93480345158198
+  },
+  "festival_groups": {
+    "before festival": {
+      "mean": 50.964285714285715,
+      "count": 196
+    },
+    "festival day": {
+      "mean": 36.885714285714286,
+      "count": 105
+    },
+    "ordinary": {
+      "mean": 42.1423487544484,
+      "count": 7025
+    }
+  },
+  "stockout_fraction_by_item": {
+    "cold_coffee": 0.018252933507170794,
+    "latte": 0.018252933507170794,
+    "cappuccino": 0.02216427640156454,
+    "espresso": 0.02346805736636245,
+    "iced_latte": 0.02346805736636245,
+    "masala_chai": 0.02346805736636245,
+    "croissant": 0.024771838331160364,
+    "americano": 0.024771838331160364,
+    "hot_chocolate": 0.024771838331160364,
+    "sandwich": 0.028683181225554105
+  },
+  "figures": {
+    "weekly": "eda_weekly.png",
+    "festival": "eda_festival.png",
+    "weather": "eda_weather.png",
+    "trend": "eda_trend.png",
+    "stockouts": "eda_stockouts.png"
+  },
+  "limitations": "Synthetic sales; historical realized weather; group differences are confounded. EDA uses train dates by default."
+}

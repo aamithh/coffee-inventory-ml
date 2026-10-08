@@ -1,0 +1,79 @@
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pytest -q
+........................................................................ [ 32%]
+........................................................................ [ 65%]
+........................................................................ [ 98%]
+...                                                                      [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\starlette\testclient.py:37
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\starlette\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+.venv\Lib\site-packages\matplotlib\_mathtext.py:45
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+219 passed, 15 warnings in 182.97s (0:03:02)
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff check src tests
+All checks passed!
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff format --check src tests
+63 files already formatted
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pip check
+No broken requirements found.
+exit_code=0
+Live dashboard CLI: HTTP 200 health=ok
+Live dashboard root: HTTP 200; Streamlit application shell available
+Live dashboard output (complete):
+
+  You can now view your Streamlit app in your browser.
+
+  URL: http://127.0.0.1:50069
+
+Seven screens, stock forms, conflicts, what-if and shopping shortcut: PASS
+Selected ingredient loads its own stock quantities: PASS
+Protected feature/model source reference scan: PASS
+Original data/model/figure/notebook hashes unchanged: 42 files PASS
+Persistent demo inventory unchanged: PASS
+Pre-1.5 backups: 11 hashes unchanged PASS
+Browser review capture: redesign_desktop.jpg; valid image (66104 bytes)
+Traceback (most recent call last):
+  File "C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\src\verification\dashboard_redesign.py", line 62, in main
+    with Image.open(path) as image:
+         ^^^^^^^^^^^^^^^^
+  File "C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\PIL\Image.py", line 3513, in open
+    fp = builtins.open(filename, "rb")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\aamit\\OneDrive\\Desktop\\ProjectX\\coffee-inventory-ml\\reports\\dashboard_screenshots\\redesign_mobile.jpg'
+
+Continuation: the first screenshot check ran before the mobile capture was saved.
+Completed screenshot audit after browser review (tests and lint were already successful):
+Browser review capture: redesign_desktop.jpg; valid image 1280x900 (66104 bytes) PASS
+Browser review capture: redesign_mobile.jpg; valid image 390x843 (27347 bytes) PASS
+Mobile browser review: viewport=390; pageWidth=390; no horizontal page overflow PASS
+Targeted screenshot audit exit_code=0
+All required checks completed; no verification step skipped.

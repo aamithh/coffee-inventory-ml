@@ -1,0 +1,189 @@
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pytest -q
+........................................................................ [ 43%]
+........................................................................ [ 87%]
+.....................                                                    [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+.venv\Lib\site-packages\matplotlib\_mathtext.py:45
+  C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+165 passed, 14 warnings in 21.83s
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff check src tests
+All checks passed!
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m ruff format --check src tests
+53 files already formatted
+exit_code=0
+$ C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe -m pip check
+No broken requirements found.
+exit_code=0
+$ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\tasks.ps1 -Task simulate
+Forecast cache: source/model/config fingerprint and CSV hash verified
+{
+  "test_start": "2025-07-20",
+  "test_end": "2025-12-31",
+  "test_days": 165,
+  "forecast_refresh_days": 7,
+  "daily_material_rows": 4950,
+  "item_rows": 4950,
+  "order_rows": 4086,
+  "policies": [
+    {
+      "policy": "manual",
+      "requested_units": 88436,
+      "served_units": 87674,
+      "lost_units": 762,
+      "service_level": 0.9913835994391424,
+      "stockout_rate": 0.008616400560857568,
+      "item_day_stockout_rate": 0.03515151515151515,
+      "waste_cost": 44868.334285714256,
+      "purchase_cost": 2869065.0,
+      "holding_cost": 15726.362923092862,
+      "lost_sale_penalty": 111268.0,
+      "initial_stock_value": 46171.55408571428,
+      "closing_stock_value": 84630.75825000006,
+      "pending_stock_value": 49990.0,
+      "total_cost": 3042230.917008807
+    },
+    {
+      "policy": "seasonal_naive",
+      "requested_units": 88436,
+      "served_units": 85810,
+      "lost_units": 2626,
+      "service_level": 0.9703062101406666,
+      "stockout_rate": 0.029693789859333304,
+      "item_day_stockout_rate": 0.11393939393939394,
+      "waste_cost": 5539.002285714268,
+      "purchase_cost": 2743660.0,
+      "holding_cost": 12609.570404521433,
+      "lost_sale_penalty": 403674.0,
+      "initial_stock_value": 46171.55408571428,
+      "closing_stock_value": 63012.97025000005,
+      "pending_stock_value": 49450.0,
+      "total_cost": 3206115.124490236
+    },
+    {
+      "policy": "ml",
+      "requested_units": 88436,
+      "served_units": 87053,
+      "lost_units": 1383,
+      "service_level": 0.9843615722104121,
+      "stockout_rate": 0.01563842778958795,
+      "item_day_stockout_rate": 0.07757575757575758,
+      "waste_cost": 1731.4508571428523,
+      "purchase_cost": 2770800.0,
+      "holding_cost": 11675.490536521433,
+      "lost_sale_penalty": 207348.0,
+      "initial_stock_value": 46171.55408571428,
+      "closing_stock_value": 57644.24167857147,
+      "pending_stock_value": 44910.0,
+      "total_cost": 3035995.044622236
+    }
+  ],
+  "relative_reduction_vs_manual": {
+    "seasonal_naive": {
+      "waste_cost": 0.8765498569560706,
+      "stockout_rate": -2.446194225721785,
+      "total_cost": -0.053869746232992656
+    },
+    "ml": {
+      "waste_cost": 0.9614104048053744,
+      "stockout_rate": -0.81496062992126,
+      "total_cost": 0.0020497695791949536
+    }
+  }
+}
+exit_code=0
+Simulation notebook: 3 cells executed, 2 embedded charts; schema validated
+Python: C:\Users\aamit\OneDrive\Desktop\ProjectX\coffee-inventory-ml\.venv\Scripts\python.exe
+Test dates: 2025-07-20 through 2025-12-31
+        policy  requested_units  served_units  lost_units  service_level  stockout_rate  item_day_stockout_rate   waste_cost  purchase_cost  holding_cost  lost_sale_penalty  initial_stock_value  closing_stock_value  pending_stock_value   total_cost
+        manual            88436         87674         762       0.991384       0.008616                0.035152 44868.334286      2869065.0  15726.362923           111268.0         46171.554086         84630.758250              49990.0 3.042231e+06
+seasonal_naive            88436         85810        2626       0.970306       0.029694                0.113939  5539.002286      2743660.0  12609.570405           403674.0         46171.554086         63012.970250              49450.0 3.206115e+06
+            ml            88436         87053        1383       0.984362       0.015638                0.077576  1731.450857      2770800.0  11675.490537           207348.0         46171.554086         57644.241679              44910.0 3.035995e+06
+Relative reductions vs manual: {
+  "seasonal_naive": {
+    "waste_cost": 0.8765498569560706,
+    "stockout_rate": -2.446194225721785,
+    "total_cost": -0.053869746232992656
+  },
+  "ml": {
+    "waste_cost": 0.9614104048053744,
+    "stockout_rate": -0.81496062992126,
+    "total_cost": 0.0020497695791949536
+  }
+}
+        policy        material unit   waste_units   waste_cost
+        manual           bread  pcs    268.100000  2144.800000
+        manual chocolate_syrup   ml      0.000000     0.000000
+        manual    coffee_beans    g      0.000000     0.000000
+        manual croissant_dough  pcs    192.497143  8662.371429
+        manual        cup_cold  pcs      0.000000     0.000000
+        manual         cup_hot  pcs      0.000000     0.000000
+        manual             ice    g 213354.285714  2133.542857
+        manual            milk   ml 532127.000000 31927.620000
+        manual           sugar    g      0.000000     0.000000
+        manual      tea_leaves    g      0.000000     0.000000
+            ml           bread  pcs      4.140000    33.120000
+            ml chocolate_syrup   ml      0.000000     0.000000
+            ml    coffee_beans    g      0.000000     0.000000
+            ml croissant_dough  pcs      0.000000     0.000000
+            ml        cup_cold  pcs      0.000000     0.000000
+            ml         cup_hot  pcs      0.000000     0.000000
+            ml             ice    g  63039.085714   630.390857
+            ml            milk   ml  17799.000000  1067.940000
+            ml           sugar    g      0.000000     0.000000
+            ml      tea_leaves    g      0.000000     0.000000
+seasonal_naive           bread  pcs     33.700000   269.600000
+seasonal_naive chocolate_syrup   ml      0.000000     0.000000
+seasonal_naive    coffee_beans    g      0.000000     0.000000
+seasonal_naive croissant_dough  pcs      4.777143   214.971429
+seasonal_naive        cup_cold  pcs      0.000000     0.000000
+seasonal_naive         cup_hot  pcs      0.000000     0.000000
+seasonal_naive             ice    g  42039.085714   420.390857
+seasonal_naive            milk   ml  77234.000000  4634.040000
+seasonal_naive           sugar    g      0.000000     0.000000
+seasonal_naive      tea_leaves    g      0.000000     0.000000
+FIFO material mass balance and item demand reconciliation: PASS
+Daily material rows: 4950 ; item rows: 4950
+Protected feature/model source reference scan: PASS
+Daily FIFO mass balance, nonnegative stock, identical policy demand, unit fulfillment and cost accounting: PASS
+Forecast bank: 12240 rows, 24 origins per policy, valid dates and cache integrity: PASS
+CSV newline audit: PASS
+No prior-phase source artifacts changed (SHA-256):
+sales_csv: f0cfccbacc248a03ca2594f8e07d5357fe23e29302b20667ce38639397bf82d1; unchanged=True
+truth_csv: 747553c6fcf8c0a3fc1a512b1d089c00ee5b99ced7b3597e8a536b0a2c218a87; unchanged=True
+weather_cache: 8de5227a7cff4939e554a3257572ebe1e92a51cc02f76c632a03717bf0a441f2; unchanged=True
+database: 12cf4d174c631000756f3ecdd3d4d7d782fc8e3ad003a5282daaf806e20ef078; unchanged=True
+truth_database: a4e210e059cb4413c75494aa41d4278af12d27fa1d484ff1f04e0635208381c1; unchanged=True
+features_csv: a5e512e7f7ec05cd44185c3b3f984a7a630262f38bb207a367ccc936405d14ba; unchanged=True
+model_bundle: cbd62bcd640d7d629d6f002a9947e3ad94d88a08414948ddd84c2d4e99e7ce9f; unchanged=True
+demo_forecast: 1ad2a54404b8e0928dd8c2f5b31c2b8500e136d3509094669391515ae45ac357; unchanged=True
+inventory_orders: e56839153aa91a18552e0072e1d0938d058e7f3f1fdca121ab91f9c36bef3dd3; unchanged=True
+Pre-1.5 backup integrity: 11 artifacts unchanged
+Weather regressions use mocked responses. No external requests or supplier orders are made.
+Phase 5 complete. Stop before Phase 6 API.
