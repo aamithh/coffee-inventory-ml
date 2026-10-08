@@ -1,0 +1,1 @@
+"""Coffee inventory project package."""
