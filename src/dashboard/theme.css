@@ -1,0 +1,49 @@
+/* Local styles keep the dashboard usable without remote fonts or image assets. */
+:root { --coffee-primary: $primary; --coffee-sidebar: $sidebar; }
+[data-testid="stAppViewContainer"] { background: #fbf9f5; color: #302b28; }
+[data-testid="stHeader"] { background: rgba(251,249,245,.94); }
+.block-container { max-width: 1360px; padding: 2rem 2.5rem 3rem; }
+[data-testid="stSidebar"] { background: var(--coffee-sidebar); border-right: 1px solid #e9e1d7; }
+[data-testid="stSidebar"] .block-container { padding: 1.5rem 1rem; }
+h1,h2,h3 { color: #382d26; letter-spacing: -.025em; }
+h1 { font-size: 2.3rem !important; }
+h2 { font-size: 1.7rem !important; }
+h3 { font-size: 1.15rem !important; }
+[data-testid="stCaptionContainer"] { color: #6c625b; }
+.brand { padding: .4rem 0 1.4rem; }
+.brand-icon { display: inline-block; padding: .65rem; border-radius: 16px; background: #fff; font-size: 1.7rem; }
+.brand-name { font-size: 1.35rem; font-weight: 800; margin: .65rem 0 .15rem; color: #382d26; }
+.brand-tagline { font-size: .86rem; color: #6c625b; line-height: 1.5; }
+.planning-pill { display: inline-block; border: 1px solid #e6ddd3; padding: .4rem .85rem;
+  border-radius: 30px; background: #fff; color: #6c625b; font-size: .85rem; margin-bottom: .5rem; }
+.welcome { border: 1px solid #f3d7c7; border-radius: 22px; padding: 1.5rem 1.7rem;
+  background: linear-gradient(115deg,#fff0e2,#fff8ef 60%,#f2edf9); margin: .2rem 0 1.4rem; }
+.welcome .eyebrow { color: #9d5138; text-transform: uppercase; letter-spacing: .13em; font-size: .72rem; font-weight: 800; }
+.welcome h2 { margin: .3rem 0 .4rem; font-size: 1.65rem !important; }
+.welcome p { margin: 0; color: #6c625b; max-width: 760px; line-height: 1.6; }
+[data-testid="stMetric"] { border: 1px solid #eadfd4; border-radius: 18px; padding: 1.15rem 1.3rem;
+  background: #fff; box-shadow: 0 4px 16px #4c362208; }
+[data-testid="stHorizontalBlock"] > div:nth-child(1) [data-testid="stMetric"] { background: #fff0e6; border-color: #f1d6c4; }
+[data-testid="stHorizontalBlock"] > div:nth-child(2) [data-testid="stMetric"] { background: #e9f6f1; border-color: #cde6dc; }
+[data-testid="stHorizontalBlock"] > div:nth-child(3) [data-testid="stMetric"] { background: #f0ecfa; border-color: #ded5ef; }
+[data-testid="stMetricValue"] { color: #382d26; font-weight: 750; }
+[data-testid="stMetricLabel"] { color: #675d56; }
+[data-testid="stVerticalBlockBorderWrapper"] > div { border-radius: 18px !important; }
+[data-testid="stForm"] { border: 1px solid #e8dfd4; border-radius: 18px; background: #fff; padding: 1.25rem; }
+[data-testid="stExpander"] { border-radius: 14px; background: #fff; }
+[data-testid="stAlert"] { border-radius: 14px; }
+[data-testid="stDataFrame"] { border-radius: 12px; overflow: hidden; }
+[data-testid="stPlotlyChart"] { background: #fff; border-radius: 16px; overflow: hidden; }
+.stButton > button,.stDownloadButton > button { border-radius: 11px; min-height: 2.7rem; font-weight: 650; }
+[data-testid="stSidebar"] [role="radiogroup"] { gap: .35rem; }
+[data-testid="stSidebar"] [role="radiogroup"] label { padding: .5rem .65rem; border-radius: 10px; }
+[data-testid="stSidebar"] [role="radiogroup"] label:hover { background: #ffffffb5; }
+.stDeployButton { display: none; }
+.small-note { padding: .7rem .9rem; border-left: 3px solid var(--coffee-primary);
+  background: #fff; color: #6c625b; font-size: .88rem; border-radius: 0 10px 10px 0; }
+@media (max-width: 760px) {
+  .block-container { padding: 1.2rem 1rem 2rem; }
+  .welcome { padding: 1.1rem; }
+  h1 { font-size: 1.8rem !important; }
+  [data-testid="stMetric"] { padding: .85rem; }
+}
