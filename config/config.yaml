@@ -1,0 +1,625 @@
+project:
+  name: coffee-inventory-ml
+  seed: 42
+  # null computes the first held-out test date; use an ISO date to override.
+  as_of_date: null
+  # Number of days to forecast; calendar coverage includes as_of_date plus this horizon.
+  forecast_horizon_days: 7
+  currency: INR
+  timezone: Asia/Kolkata
+paths:
+  raw: data/raw
+  processed: data/processed
+  external: data/external
+  database: data/processed/coffee.sqlite
+  # Evaluation-only demand is isolated from the observed-sales database.
+  truth_database: data/processed/simulation_truth.db
+  # Isolated generated artifacts are validated here before publication.
+  pipeline_staging: data/processed/.pipeline_staging
+  # Preserve the original Phase 1 dataset before this patch.
+  backup_pre_1_5: data/processed/backup_pre_1_5
+  # Full command output and measured Phase 1.5 checks.
+  verification_output: reports/phase_1_5_verification.txt
+  models: models
+  figures: reports/figures
+  # Separate Phase 2 output paths; existing generated sales and databases remain untouched.
+  features_csv: data/processed/features.csv
+  feature_manifest: data/processed/feature_manifest.json
+  eda_summary: reports/eda_summary.json
+  eda_report: reports/eda.md
+  phase_2_verification: reports/phase_2_verification.txt
+  # Phase 3 artifacts and measured model reports.
+  model_bundle: models/forecast_bundle.joblib
+  model_metadata: models/metadata.json
+  model_report: reports/modeling.md
+  model_metrics_csv: reports/model_metrics.csv
+  model_predictions: reports/test_predictions.csv
+  model_cv_results: reports/walk_forward.csv
+  model_recursive_metrics: reports/recursive_metrics.csv
+  demo_forecast: reports/demo_forecast.csv
+  model_explanation: reports/prediction_explanation.json
+  phase_3_verification: reports/phase_3_verification.txt
+  # Phase 4 outputs are separate from source data and model artifacts.
+  inventory_bom: reports/inventory_bom.csv
+  inventory_forecasts: reports/inventory_forecasts.csv
+  material_requirements: reports/material_requirements.csv
+  inventory_snapshot: reports/inventory_snapshot.csv
+  inventory_orders: reports/inventory_orders.csv
+  inventory_summary: reports/inventory_summary.json
+  inventory_report: reports/inventory.md
+  phase_4_verification: reports/phase_4_verification.txt
+  # Executed notebook path used by verification.
+  modeling_notebook: notebooks/02_modeling.ipynb
+  metrics: reports/metrics.json
+  simulation: reports/simulation.csv
+  # Phase 5 replay outputs; source sales, features and models are immutable.
+  simulation_items: reports/simulation_items.csv
+  simulation_orders: reports/simulation_orders.csv
+  simulation_summary: reports/simulation_summary.csv
+  simulation_waste: reports/simulation_waste.csv
+  simulation_forecasts: reports/simulation_forecasts.csv
+  simulation_metadata: reports/simulation_metadata.json
+  simulation_metrics: reports/simulation_metrics.json
+  simulation_report: reports/simulation.md
+  simulation_notebook: notebooks/03_simulation.ipynb
+  phase_5_verification: reports/phase_5_verification.txt
+  # Local API inventory revisions are separate from generated source datasets.
+  api_inventory_state: data/processed/api_inventory.json
+  phase_6_verification: reports/phase_6_verification.txt
+  api_schema: reports/api_openapi.json
+  phase_7_verification: reports/phase_7_verification.txt
+  dashboard_screenshots: reports/dashboard_screenshots
+  # Local visual theme; no remote assets are required.
+  dashboard_styles: src/dashboard/theme.css
+  # Keep redesign verification and captures separate from earlier phase evidence.
+  dashboard_redesign_verification: reports/dashboard_redesign_verification.txt
+  dashboard_redesign_desktop: reports/dashboard_screenshots/redesign_desktop.jpg
+  dashboard_redesign_mobile: reports/dashboard_screenshots/redesign_mobile.jpg
+  # Final quality transcript and presentation documents.
+  phase_8_verification: reports/phase_8_verification.txt
+  final_report: docs/report.md
+  slide_outline: docs/slide_outline.md
+  demo_script: docs/demo_script.md
+  sales_csv: data/raw/sales.csv
+  truth_csv: data/raw/simulation_truth.csv
+  calendar_csv: data/external/calendar.csv
+  weather_cache: data/external/weather.csv
+  weather_metadata: data/external/weather_metadata.json
+  data_summary: reports/data_summary.json
+  sales_sample: reports/sales_sample.csv
+  data_dictionary: docs/data_dictionary.md
+  data_dictionary_json: docs/data_dictionary.json
+  data_report: reports/data_quality.md
+data:
+  start_date: '2023-01-01'
+  end_date: '2025-12-31'
+  weather_provider: auto
+  latitude: 12.9716
+  longitude: 77.5946
+  promotion_probability: 0.08
+  promotion_lift: 1.25
+  cannibalization_factor: 0.97
+  stockout_probability: 0.025
+  missing_probability: 0.005
+  outlier_probability: 0.005
+  closure_probability: 0.008
+  annual_trend: 0.06
+  drift_duration_days: 180
+  drift_lift: 0.12
+  noise_dispersion: 30
+  weekend_lift: 1.15
+  cold_bakery_weekend_lift: 1.3
+  payday_lift: 1.08
+  festival_pre_lift: 1.2
+  festival_day_factor: 0.85
+  weather_timeout_seconds: 30
+  random_stream: 1
+  weekday_factors:
+  - 0.95
+  - 0.97
+  - 1
+  - 1
+  - 1.08
+  - 1
+  - 1
+  high_weekend_categories:
+  - cold_drink
+  - bakery
+  promotion_discount: 0.1
+  stockout_cap_min: 0.35
+  stockout_cap_max: 0.75
+  outlier_multiplier_min: 2.5
+  outlier_multiplier_max: 4.5
+  festival_pre_days: 2
+  other_holiday_factor: 0.95
+  long_weekend_lift: 1.1
+  sample_rows: 20
+features:
+  lags:
+  - 1
+  - 7
+  - 14
+  - 28
+  rolling_windows:
+  - 7
+  - 28
+  censored_target_policy: exclude
+  # Weather inputs available before target date: persistence or timestamped supplied forecasts.
+  weather_policy: persistence
+  # Prior clean observations used to estimate censored targets, without backward filling.
+  imputation_window: 7
+  # Fixed calendar periods; encodings do not fit statistics on future data.
+  cyclical_periods: {day_of_week: 7, month: 12, day_of_month: 31, week_of_year: 53}
+  cold_start_days: 14
+  temperature_bins:
+  - 20
+  - 28
+  - 35
+validation:
+  train_fraction: 0.7
+  validation_fraction: 0.15
+  test_fraction: 0.15
+  walk_forward_folds: 5
+models:
+  quantiles:
+  - 0.1
+  - 0.5
+  - 0.9
+  ridge_alpha: 1.0
+  lightgbm:
+    n_estimators: 300
+    learning_rate: 0.05
+    num_leaves: 31
+    verbosity: -1
+    n_jobs: 2
+  tuning:
+    num_leaves:
+    - 15
+    - 31
+    learning_rate:
+    - 0.03
+    - 0.05
+  # Missing baseline lags use only prior observed item/category estimates.
+  baseline_fallback_columns: [sales_rolling_mean_7, category_past_mean]
+  # Requested relative WAPE improvement; measured, never imposed on results.
+  required_wape_improvement: 0.15
+  # Seven-day recursive evaluation origins advance by seven days.
+  recursive_origin_stride: 7
+  # Deterministic sample for SHAP plots; explanations remain additive model associations.
+  shap_sample_rows: 200
+  # Maximum SHAP summary drivers and progress cadence for recursive evaluation.
+  shap_max_display: 15
+  recursive_progress_every: 4
+  explanation_top_n: 5
+  # Validation chooses between these ML point models before test evaluation.
+  point_candidates: [ridge, lightgbm]
+  # If enabled, the optional SARIMAX extension requires separate implementation.
+  enable_sarimax: false
+inventory:
+  # Mean need and spread estimated over this initial forecast window.
+  mean_window_days: 7
+  # Floating point tolerance in supplier pack ceil/floor calculations.
+  rounding_tolerance: 1.0e-9
+  # Normal approximation; the target is not an empirical service guarantee.
+  service_level: 0.95
+  # Leave this many days before material expiry.
+  buffer_days: 1
+  # Coverage begins at receipt, in addition to supplier lead time.
+  target_coverage_days: 7
+  manual_buffer_fraction: 0.2
+  holding_cost_daily_fraction: 0.001
+  lost_sale_penalty_fraction: 1.0
+  initial_coverage_days: 3
+api:
+  # Local development only; one process owns snapshot revisions.
+  workers: 1
+  log_level: info
+  # Synthetic what-if weather vintage precedes the configured forecast origin.
+  scenario_issue_lead_minutes: 1
+  scenario_festival_name: scenario
+  # Bounds for verification's temporary live loopback server.
+  verification_startup_seconds: 30
+  verification_request_seconds: 60
+  verification_poll_seconds: 0.2
+  verification_shutdown_seconds: 10
+  host: 127.0.0.1
+  port: 8000
+  max_forecast_days: 30
+dashboard:
+  host: 127.0.0.1
+  port: 8501
+  # local embeds the service; http shares the separately running API revision store.
+  backend: local
+  api_url: http://127.0.0.1:8000
+  request_timeout_seconds: 60
+  # Config override for app tests and standalone Streamlit runs.
+  config_environment_variable: COFFEE_DASHBOARD_CONFIG
+  theme: light
+  history_days: 28
+  verification_startup_seconds: 30
+  verification_poll_seconds: 0.2
+  verification_shutdown_seconds: 10
+  app_test_timeout_seconds: 60
+  colors:
+    # Café palette shared by charts and local styles.
+    primary: '#d96545'
+    muted: '#8b7b70'
+    band: 'rgba(217,101,69,0.16)'
+    sidebar: '#f4eee5'
+    secondary: '#248b77'
+    accent: '#8570b7'
+    palette: ['#d96545', '#248b77', '#8570b7', '#d5a43b']
+  weather_controls:
+    temperature_min: -10
+    temperature_max: 45
+    default_max: 32
+    default_min: 22
+    rainfall_max: 100
+    default_rain: 0
+menu:
+  espresso:
+    category: hot_drink
+    base_demand: 40
+    price: 90
+  americano:
+    category: hot_drink
+    base_demand: 30
+    price: 110
+  latte:
+    category: hot_drink
+    base_demand: 50
+    price: 160
+  cappuccino:
+    category: hot_drink
+    base_demand: 45
+    price: 150
+  cold_coffee:
+    category: cold_drink
+    base_demand: 40
+    price: 180
+  iced_latte:
+    category: cold_drink
+    base_demand: 30
+    price: 180
+  hot_chocolate:
+    category: hot_drink
+    base_demand: 20
+    price: 170
+  masala_chai:
+    category: hot_drink
+    base_demand: 40
+    price: 80
+  croissant:
+    category: bakery
+    base_demand: 25
+    price: 140
+  sandwich:
+    category: food
+    base_demand: 30
+    price: 180
+# Material quantities use each declared unit. min_order_qty also defaults to
+# the pack increment; optional order_multiple sets a distinct positive increment.
+materials:
+  coffee_beans:
+    unit: g
+    shelf_life_days: 90
+    lead_time_days: 3
+    unit_cost: 1.2
+    min_order_qty: 1000
+    wastage_factor: 0.03
+  milk:
+    unit: ml
+    shelf_life_days: 4
+    lead_time_days: 1
+    unit_cost: 0.06
+    min_order_qty: 1000
+    wastage_factor: 0.05
+  sugar:
+    unit: g
+    shelf_life_days: 180
+    lead_time_days: 2
+    unit_cost: 0.045
+    min_order_qty: 1000
+    wastage_factor: 0.03
+  chocolate_syrup:
+    unit: ml
+    shelf_life_days: 30
+    lead_time_days: 2
+    unit_cost: 0.3
+    min_order_qty: 500
+    wastage_factor: 0.04
+  tea_leaves:
+    unit: g
+    shelf_life_days: 90
+    lead_time_days: 3
+    unit_cost: 0.6
+    min_order_qty: 500
+    wastage_factor: 0.03
+  ice:
+    unit: g
+    shelf_life_days: 7
+    lead_time_days: 1
+    unit_cost: 0.01
+    min_order_qty: 1000
+    wastage_factor: 0.08
+  croissant_dough:
+    unit: pcs
+    shelf_life_days: 2
+    lead_time_days: 1
+    unit_cost: 45
+    min_order_qty: 10
+    wastage_factor: 0.08
+  bread:
+    unit: pcs
+    shelf_life_days: 2
+    lead_time_days: 1
+    unit_cost: 8
+    min_order_qty: 10
+    wastage_factor: 0.06
+  cup_hot:
+    unit: pcs
+    shelf_life_days: 365
+    lead_time_days: 4
+    unit_cost: 4
+    min_order_qty: 100
+    wastage_factor: 0.03
+  cup_cold:
+    unit: pcs
+    shelf_life_days: 365
+    lead_time_days: 4
+    unit_cost: 5
+    min_order_qty: 100
+    wastage_factor: 0.03
+recipes:
+  espresso:
+    coffee_beans: 18
+    cup_hot: 1
+  americano:
+    coffee_beans: 18
+    cup_hot: 1
+  latte:
+    coffee_beans: 18
+    milk: 200
+    sugar: 8
+    cup_hot: 1
+  cappuccino:
+    coffee_beans: 18
+    milk: 150
+    sugar: 8
+    cup_hot: 1
+  cold_coffee:
+    coffee_beans: 18
+    milk: 200
+    sugar: 15
+    ice: 100
+    cup_cold: 1
+  iced_latte:
+    coffee_beans: 18
+    milk: 180
+    sugar: 10
+    ice: 120
+    cup_cold: 1
+  hot_chocolate:
+    milk: 220
+    chocolate_syrup: 30
+    sugar: 8
+    cup_hot: 1
+  masala_chai:
+    tea_leaves: 4
+    milk: 100
+    sugar: 10
+    cup_hot: 1
+  croissant:
+    croissant_dough: 1
+  sandwich:
+    bread: 2
+weather:
+  archive_url: https://archive-api.open-meteo.com/v1/archive
+  cache_enabled: true
+  random_stream: 2
+  year_days: 365.25
+  base_temp_max: 30
+  temperature_amplitude: 4
+  temperature_peak_day: 105
+  temperature_noise_std: 1.8
+  diurnal_spread: 9
+  diurnal_spread_std: 1
+  min_diurnal_spread: 5
+  monsoon_months:
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  monsoon_rain_probability: 0.55
+  dry_rain_probability: 0.12
+  rain_gamma_shape: 1.8
+  rain_gamma_scale: 4
+  rain_threshold_mm: 0.5
+  demand_reference_temp: 28
+  decimals: 2
+calendar:
+  country: IN
+  subdivision: KA
+  observed: false
+  weekend_days:
+  - 5
+  - 6
+  payday_first_days: 3
+  payday_last_days: 3
+  long_weekend_padding_days: 10
+  long_weekend_min_days: 3
+  required_dated_festivals:
+  - Holi
+  - Diwali
+  recurring_festivals:
+    New Year: 01-01
+    Christmas: 12-25
+    Independence Day: 08-15
+  dated_festivals:
+    '2022-03-18': Holi
+    '2022-10-24': Diwali
+    '2023-03-08': Holi
+    '2023-11-12': Diwali
+    '2024-03-25': Holi
+    '2024-10-31': Diwali
+    '2025-03-14': Holi
+    '2025-10-20': Diwali
+    '2026-03-04': Holi
+    '2026-11-08': Diwali
+demand_profiles:
+  hot_drink:
+    monthly_factors:
+    - 1.1
+    - 1.05
+    - 1
+    - 0.94
+    - 0.95
+    - 1
+    - 1.06
+    - 1.07
+    - 1.05
+    - 1.03
+    - 1.07
+    - 1.12
+    temperature_coefficient: -0.025
+    rain_lift: 1.03
+  cold_drink:
+    monthly_factors:
+    - 0.9
+    - 0.95
+    - 1.06
+    - 1.15
+    - 1.15
+    - 1.08
+    - 1
+    - 0.97
+    - 0.96
+    - 0.96
+    - 0.94
+    - 0.9
+    temperature_coefficient: 0.055
+    rain_lift: 0.9
+  bakery:
+    monthly_factors:
+    - 1.05
+    - 1
+    - 1
+    - 1
+    - 0.98
+    - 0.99
+    - 1
+    - 1.01
+    - 1.02
+    - 1.06
+    - 1.1
+    - 1.15
+    temperature_coefficient: 0
+    rain_lift: 1.02
+  food:
+    monthly_factors:
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    temperature_coefficient: 0
+    rain_lift: 0.98
+item_effects:
+  espresso:
+    rain_lift: 1.15
+  hot_chocolate:
+    rain_lift: 1.25
+    temperature_coefficient: -0.035
+  masala_chai:
+    rain_lift: 1.25
+    temperature_coefficient: -0.03
+
+# Phase 1.5 generator controls; all random streams derive from project.seed.
+generator:
+  shop_daily_shock:
+    # Mean-one lognormal sigma; 0 disables correlated daily demand.
+    sigma: 0.07
+    # Dedicated shop-shock random stream, independent of scheduling/items/weather.
+    random_stream: 10
+  promotions:
+    # per_item promotes independently; shop_day keeps one selected peer per shop day.
+    mode: per_item
+    # Probability per item/day, approximately 65 promotions/item over three years.
+    per_item_probability: 0.06
+    # Stable promotion RNG namespace.
+    random_stream: 11
+    # Fixed spillover/selection universe: adding menu items does not alter existing history.
+    peer_item_ids: [espresso, americano, latte, cappuccino, cold_coffee, iced_latte, hot_chocolate, masala_chai, croissant, sandwich]
+  drift:
+    # null resolves to validation start; override with an ISO date to move the ramp.
+    start_date: null
+  record_status:
+    # Optionally expose censored stockout rows for later treatment; all other defects stay excluded.
+    allow_stockout_for_training: false
+  # Stable per-item demand and observation RNG namespace, combined with SHA-256(item_id).
+  item_random_stream: 12
+sqlite:
+  # Optional override applies to both database basenames; no project files are moved.
+  directory_env_variable: COFFEE_DB_DIR
+  # Staging disables this internally so temporary databases never resolve to live paths.
+  honor_environment_override: true
+  # DELETE permits attached-database atomic commits; WAL is intentionally not enabled.
+  journal_mode: DELETE
+  # Example for the required OneDrive warning; this is a recommendation, not a move target.
+  non_synced_example: C:/dev/coffee-inventory-ml
+leakage_guard:
+  # Add future training/feature folders here; absolute paths are supported for tests.
+  protected_folders: [src/features, src/models]
+  # Conservative source-text guard: comments and strings count as references.
+  blocked_symbols: [truth_loader, load_truth, simulation_truth, truth_database, latent_demand, expected_demand_without_shop_shock, shop_daily_multiplier]
+quality:
+  # Clean-data hot/normal comparison uses this Celsius cutoff.
+  hot_temperature_threshold: 30
+  # Items for clean hot-vs-normal demand comparisons.
+  cold_items: [cold_coffee, iced_latte]
+  # Items for clean rainy-vs-dry demand comparisons.
+  rain_items: [hot_chocolate, masala_chai]
+cli:
+  # Maximum execution time per notebook cell in the existing venv.
+  notebook_timeout_seconds: 120
+  # Required-library import checks for setup-check; installed versions remain pinned.
+  setup_check_imports: [numpy, pandas, sklearn, lightgbm, statsmodels.api, shap, matplotlib.pyplot, plotly, fastapi, uvicorn, streamlit, sqlalchemy, yaml, joblib, holidays, httpx, nbformat]
+
+# Training-only exploratory plots; held-out data does not guide model choices.
+eda:
+  split: train
+  # Descriptive smoothing window, not a model input.
+  trend_window: 28
+  # Plot dimensions in inches and output resolution.
+  figure_size: [10, 4]
+  dpi: 120
+  # Stable filenames under paths.figures.
+  figures: {weekly: eda_weekly.png, festival: eda_festival.png, weather: eda_weather.png, trend: eda_trend.png, stockouts: eda_stockouts.png}
+
+# Phase 3 plot filenames under paths.figures.
+model_figures:
+  comparison: model_wape.png
+  intervals: model_intervals.png
+  shap: shap_summary.png
+
+# Frozen Phase 5 replay choices; no tuning on test outcomes.
+simulation_settings:
+  # Weekly forecast refresh, daily inventory review; fixed-origin predictions in between.
+  forecast_refresh_days: 7
+  # Manual estimate uses valid observations in the previous seven calendar days.
+  manual_window_days: 7
+  # Past seasonal-naive error window used for material residual sigma.
+  residual_window_days: 28
+  # Cache requires matching source/model/config fingerprint and file hash.
+  reuse_forecast_cache: true
+simulation_figures:
+  comparison: simulation_comparison.png
+  costs: simulation_costs.png
