@@ -1,0 +1,34 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+data/raw/*
+data/processed/*
+data/external/*
+!data/**/.gitkeep
+models/*
+!models/.gitkeep
+reports/figures/*
+!reports/figures/.gitkeep
+
+# Share the verified synthetic demo and fitted model with report collaborators.
+!data/raw/sales.csv
+!data/raw/simulation_truth.csv
+!data/processed/coffee.sqlite
+!data/processed/simulation_truth.db
+!data/processed/features.csv
+!data/processed/feature_manifest.json
+!data/external/calendar.csv
+!data/external/weather.csv
+!data/external/weather_metadata.json
+!models/forecast_bundle.joblib
+!models/metadata.json
+!reports/figures/*.png
+
+# Local secrets and machine-specific files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
