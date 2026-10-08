@@ -1,0 +1,6 @@
+{
+  "cache_key": "386a70768edb587e1f388e0d818e8f44529874588c3a661d8ae0ef2995aeed45",
+  "source": "open_meteo",
+  "requested_provider": "auto",
+  "note": "Historical reanalysis is not an archived operational forecast."
+}
