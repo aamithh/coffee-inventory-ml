@@ -1,0 +1,228 @@
+{
+  "sales": {
+    "date": {
+      "type": "date",
+      "description": "Local sales day; one row per date/item.",
+      "unit": "day",
+      "availability": "known calendar"
+    },
+    "item": {
+      "type": "string",
+      "description": "Editable menu identifier.",
+      "unit": "",
+      "availability": "known in advance"
+    },
+    "category": {
+      "type": "string",
+      "description": "Menu category.",
+      "unit": "",
+      "availability": "known in advance"
+    },
+    "price": {
+      "type": "float",
+      "description": "Planned selling price, including promotion discount.",
+      "unit": "INR/sale",
+      "availability": "known in advance"
+    },
+    "promo_flag": {
+      "type": "int",
+      "description": "This item is the selected promotion for this day.",
+      "unit": "0/1",
+      "availability": "planned in advance"
+    },
+    "sales": {
+      "type": "nullable float",
+      "description": "Observed units sold; censored on stockouts, may contain POS errors.",
+      "unit": "items",
+      "availability": "after day ends; target"
+    },
+    "stockout_flag": {
+      "type": "int",
+      "description": "Realized item demand exceeded the simulated sales cap.",
+      "unit": "0/1",
+      "availability": "after day ends; target-quality metadata"
+    },
+    "closure_flag": {
+      "type": "int",
+      "description": "Shop was closed; observed and latent demand set to zero.",
+      "unit": "0/1",
+      "availability": "after day ends; metadata"
+    },
+    "missing_flag": {
+      "type": "int",
+      "description": "Observed sales was deliberately made missing.",
+      "unit": "0/1",
+      "availability": "after day ends; metadata"
+    },
+    "outlier_flag": {
+      "type": "int",
+      "description": "Injected POS over-recording error, not latent customer demand.",
+      "unit": "0/1",
+      "availability": "after day ends; metadata"
+    },
+    "day_of_week": {
+      "type": "int",
+      "description": "Monday=0 through Sunday=6.",
+      "unit": "",
+      "availability": "known calendar"
+    },
+    "weekend_flag": {
+      "type": "int",
+      "description": "Configured weekend weekday.",
+      "unit": "0/1",
+      "availability": "known calendar"
+    },
+    "day_of_month": {
+      "type": "int",
+      "description": "Day number within month.",
+      "unit": "day",
+      "availability": "known calendar"
+    },
+    "week_of_year": {
+      "type": "int",
+      "description": "ISO week number.",
+      "unit": "week",
+      "availability": "known calendar"
+    },
+    "month": {
+      "type": "int",
+      "description": "Calendar month number.",
+      "unit": "month",
+      "availability": "known calendar"
+    },
+    "month_end_flag": {
+      "type": "int",
+      "description": "Final day of the calendar month.",
+      "unit": "0/1",
+      "availability": "known calendar"
+    },
+    "holiday_flag": {
+      "type": "int",
+      "description": "India/Karnataka holiday from the pinned holidays package.",
+      "unit": "0/1",
+      "availability": "known calendar"
+    },
+    "holiday_name": {
+      "type": "string",
+      "description": "Holiday name or empty string.",
+      "unit": "",
+      "availability": "known calendar"
+    },
+    "festival_flag": {
+      "type": "int",
+      "description": "Configured shop-relevant festival date.",
+      "unit": "0/1",
+      "availability": "known calendar"
+    },
+    "festival_name": {
+      "type": "string",
+      "description": "Configured festival name or empty string.",
+      "unit": "",
+      "availability": "known calendar"
+    },
+    "days_to_next_festival": {
+      "type": "int",
+      "description": "Days to next configured festival; zero on event day.",
+      "unit": "days",
+      "availability": "known calendar"
+    },
+    "days_since_last_festival": {
+      "type": "int",
+      "description": "Days since last configured festival; zero on event day.",
+      "unit": "days",
+      "availability": "known calendar"
+    },
+    "payday_flag": {
+      "type": "int",
+      "description": "First/last configured days of a month.",
+      "unit": "0/1",
+      "availability": "known calendar"
+    },
+    "long_weekend_flag": {
+      "type": "int",
+      "description": "Part of a consecutive holiday/weekend run of configured length.",
+      "unit": "0/1",
+      "availability": "known calendar"
+    },
+    "temp_max": {
+      "type": "float",
+      "description": "Daily maximum temperature.",
+      "unit": "degrees C",
+      "availability": "synthetic proxy or historical reanalysis"
+    },
+    "temp_min": {
+      "type": "float",
+      "description": "Daily minimum temperature.",
+      "unit": "degrees C",
+      "availability": "synthetic proxy or historical reanalysis"
+    },
+    "rainfall": {
+      "type": "float",
+      "description": "Daily precipitation; treated as rain in this demo.",
+      "unit": "mm",
+      "availability": "synthetic proxy or historical reanalysis"
+    },
+    "rain_flag": {
+      "type": "int",
+      "description": "Precipitation meets configured threshold.",
+      "unit": "0/1",
+      "availability": "same availability as weather"
+    },
+    "weather_source": {
+      "type": "string",
+      "description": "synthetic or open_meteo; source is retained.",
+      "unit": "",
+      "availability": "provider metadata"
+    },
+    "record_status": {
+      "type": "string",
+      "description": "Single precedence: closed > missing > stockout > outlier > clean.",
+      "unit": "",
+      "availability": "after day ends; target-quality metadata"
+    },
+    "usable_for_training": {
+      "type": "bool",
+      "description": "Clean rows, plus stockouts only when explicitly configured.",
+      "unit": "true/false",
+      "availability": "after day ends; target eligibility, never a predictor"
+    }
+  },
+  "simulation_truth": {
+    "date": {
+      "type": "date",
+      "description": "Local sales day; one row per date/item.",
+      "unit": "day",
+      "availability": "known calendar"
+    },
+    "item": {
+      "type": "string",
+      "description": "Editable menu identifier.",
+      "unit": "",
+      "availability": "known in advance"
+    },
+    "latent_demand": {
+      "type": "int",
+      "description": "Uncapped realized customer demand; zero on closure days.",
+      "unit": "items",
+      "availability": "oracle; simulation evaluation only"
+    },
+    "expected_demand": {
+      "type": "float",
+      "description": "Generator mean before demand noise; zero on closure days.",
+      "unit": "items",
+      "availability": "oracle; data diagnostics only"
+    },
+    "expected_demand_without_shop_shock": {
+      "type": "float",
+      "description": "Mean demand excluding the shared shock; residual diagnostic only.",
+      "unit": "items",
+      "availability": "oracle; never training"
+    },
+    "shop_daily_multiplier": {
+      "type": "float",
+      "description": "Same mean-one daily lognormal draw across all items.",
+      "unit": "multiplier",
+      "availability": "oracle; never training"
+    }
+  }
+}
